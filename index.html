@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>自重训练计划 · 腰腹与下肢</title>
+<meta name="theme-color" content="#161E1A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="训练计划">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACAUlEQVR42u3dsdEBQRiAYXcjUIFAIFYCgUSsBz0oRA96EEsElKAUoQbMBWdm9/tun6cB/+7/3ufWuNEt16sZ/NLbAsSBOBAH4kAciANxIA7EgThAHIgDcSAOxIE4EAfiQByIA8SBOBAH4kAciANxIA7EgThAHIgDcSAOxIE4EAfiQByIA3GAOBAH4kAciANxIA7EgTgQB4gDcSAOxIE4iGFe/iU3+22Elb8fL//+YV3JnysPkoVEwr2tBCwj7F/lngNxhL9ADQ+TA3EgDqYTR+QTo9OsyUHgOGJeoMbGgKKfkIY6OsoiYhx4W0EciANxgDgQB+JAHIgDcSAOxIE4EAeIgwEVnpX9HA8t7Ozids++hKJf9mkki8kk0ivDqt1zEDWONsdG9rWbHIgDcZAvjgkc+htcu8lBgDjaHB6pV13hcUgfn4sDbyuIA3GAOBAH4kAciANxIA7EgTgQB4gDcTBGhWdld9eLfR/neTqXfLmiX/aRRa5EemWkU2wn3XNQOw5jI+N+mhyIA3GQL47CB3SnWZODqcRheKTbyQqPQzrWZrnAPCuLew7EgTgQB+JAHIgDcSAOxAHiQByIA3EgDsSBOBAH4kAcIA7EgTgQB+JAHIgDcSAOxAHiQByIA3EgDsSBOBAH4kAciAPEgTgQB+JAHIgDcSAOxIE4QByIg398AfVKQ3HgF3/lAAAAAElFTkSuQmCC">
+<style>
+  :root{
+    --bg:#E9EDE7;
+    --paper:#FAFBF8;
+    --ink:#161E1A;
+    --ink-2:#4A554E;
+    --muted:#7C877F;
+    --line:#D2D9CF;
+    --accent:#0E6A5C;
+    --accent-soft:#D6E7E1;
+    --flag:#6E3350;
+    --mono:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace;
+    --cjk:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--cjk);
+    font-size:16px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:120px;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 18px}
+
+  /* ---------- header ---------- */
+  header{padding:34px 0 22px;border-bottom:1px solid var(--line)}
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 10px;
+  }
+  h1{font-size:27px;line-height:1.3;margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
+  .sub{color:var(--ink-2);font-size:14.5px;margin:0}
+  .meta{display:flex;gap:22px;margin-top:20px;flex-wrap:wrap}
+  .meta div{font-size:13px;color:var(--ink-2)}
+  .meta b{font-family:var(--mono);font-size:19px;font-weight:600;color:var(--ink);display:block;line-height:1.2}
+
+  /* ---------- progress ---------- */
+  .progress{
+    margin-top:22px;display:flex;align-items:center;gap:12px;
+  }
+  .track{flex:1;height:3px;background:var(--line);position:relative;overflow:hidden}
+  .track i{position:absolute;inset:0 auto 0 0;width:0;background:var(--accent);transition:width .35s ease}
+  .pct{font-family:var(--mono);font-size:12px;color:var(--muted);min-width:44px;text-align:right}
+
+  /* ---------- section ---------- */
+  section{margin-top:38px}
+  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:4px}
+  .sec-head h2{font-size:17px;margin:0;font-weight:700;letter-spacing:.02em}
+  .sec-head span{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.12em}
+  .sec-note{font-size:13.5px;color:var(--ink-2);margin:0 0 16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .tag{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--accent);
+    border:1px solid var(--accent);padding:2px 6px;white-space:nowrap;align-self:center;
+  }
+
+  /* ---------- breath pacer (signature) ---------- */
+  .breath{background:var(--paper);border:1px solid var(--line);padding:16px 16px 14px;margin-bottom:20px}
+  .breath-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .breath-top p{margin:0;font-size:13.5px;color:var(--ink-2)}
+  .breath-bar{height:2px;background:var(--line);margin-top:14px;position:relative}
+  .breath-bar i{
+    position:absolute;left:0;top:-3px;height:8px;width:6%;
+    background:var(--accent);transition:width 4s linear;
+  }
+  .breath-bar.out i{transition-duration:6s}
+  .breath-label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--muted);margin-top:10px}
+  .breath-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:10px;gap:12px}
+  .breath-count{font-family:var(--mono);font-size:30px;font-weight:600;line-height:1;color:var(--ink);min-width:34px}
+  .breath-count.idle{color:var(--line)}
+  .snd{display:flex;gap:6px}
+  .snd button{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;padding:5px 9px;cursor:pointer;
+    border:1px solid var(--line);background:none;color:var(--muted);
+  }
+  .snd button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+  button.ghost{
+    font-family:var(--cjk);font-size:13px;color:var(--accent);background:none;
+    border:1px solid var(--accent);padding:5px 12px;cursor:pointer;white-space:nowrap;
+  }
+  button.ghost:active{background:var(--accent-soft)}
+
+  /* ---------- exercise ---------- */
+  .ex{background:var(--paper);border:1px solid var(--line);margin-bottom:12px}
+  .ex-main{padding:16px 16px 14px}
+  .ex-title{display:flex;gap:10px;align-items:baseline}
+  .num{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:2px}
+  .ex-title h3{margin:0;font-size:16.5px;font-weight:700;flex:1;line-height:1.45}
+  .rx{font-family:var(--mono);font-size:13px;color:var(--accent);margin:6px 0 0 22px;letter-spacing:.02em}
+
+  .sets{display:flex;gap:8px;align-items:center;margin:14px 0 0 22px;flex-wrap:wrap}
+  .sets small{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--muted);margin-right:2px}
+  .set{
+    width:38px;height:34px;border:1.5px solid var(--accent);background:none;cursor:pointer;
+    font-family:var(--mono);font-size:13px;color:var(--accent);padding:0;
+  }
+  .set.done{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+  details{border-top:1px solid var(--line)}
+  summary{
+    list-style:none;cursor:pointer;padding:11px 16px;font-size:13px;color:var(--muted);
+    font-family:var(--mono);letter-spacing:.1em;display:flex;justify-content:space-between;
+  }
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-size:15px}
+  details[open] summary::after{content:"–"}
+  .body{padding:2px 16px 16px}
+  .body ul{margin:0 0 12px;padding-left:18px}
+  .body li{font-size:14.5px;color:var(--ink-2);margin-bottom:7px}
+  .body li b{color:var(--ink)}
+  .flag{border-left:2px solid var(--flag);padding:2px 0 2px 12px;margin-top:12px}
+  .flag p{margin:0;font-size:14px;color:var(--ink-2)}
+  .flag p b{color:var(--flag);font-family:var(--mono);font-size:11px;letter-spacing:.14em;display:block;margin-bottom:3px}
+
+  /* ---------- rules ---------- */
+  .rules{background:var(--ink);color:#E6ECE7;padding:24px 20px;margin-top:38px}
+  .rules h2{font-size:15px;margin:0 0 16px;letter-spacing:.04em;color:#fff}
+  .rules ol{margin:0;padding-left:20px}
+  .rules li{font-size:14.5px;margin-bottom:11px;color:#C3CFC7}
+  .rules li b{color:#fff}
+  .rules .tail{margin:18px 0 0;font-size:13px;color:#94A69B;border-top:1px solid #2E3A34;padding-top:14px}
+
+  footer{margin-top:34px;padding:20px 0 10px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+
+  /* ---------- rest timer ---------- */
+  .rest{
+    position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;
+    transform:translateY(102%);transition:transform .28s ease;z-index:20;
+  }
+  .rest.up{transform:translateY(0)}
+  .rest-bar{height:4px;background:#2E3A34;position:relative}
+  .rest-bar i{position:absolute;inset:0 auto 0 0;background:#4FBFA8;width:100%}
+  .rest-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px 22px;max-width:640px;margin:0 auto}
+  .rest-in .t{font-family:var(--mono);font-size:34px;font-weight:600;line-height:1;letter-spacing:-.02em}
+  .rest-in .cue{font-size:13px;color:#9FB3A9;margin:5px 0 0}
+  .rest-in button{
+    background:none;border:1px solid #4A5A52;color:#DCE6E0;font-family:var(--cjk);
+    font-size:13.5px;padding:9px 16px;cursor:pointer;white-space:nowrap;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important}
+  }
+
+  /* ---------- print ---------- */
+  @media print{
+    body{background:#fff;padding-bottom:0;font-size:11.5pt;line-height:1.6}
+    .wrap{max-width:none;padding:0}
+    .rest,.progress,.breath-top button,.breath-bar,.breath-label{display:none !important}
+    .ex,.breath{border:1px solid #BBB;break-inside:avoid;page-break-inside:avoid;background:#fff}
+    details{display:block !important}
+    details > .body{display:block !important}
+    summary{display:none !important}
+    .body{padding-top:12px;border-top:1px solid #DDD;margin-top:0}
+    .set{border-color:#999;color:#fff}
+    .rules{background:#fff;color:#000;border:2px solid #000;break-inside:avoid}
+    .rules h2,.rules li b{color:#000}
+    .rules li,.rules .tail{color:#222}
+    .rules .tail{border-top-color:#BBB}
+    section{break-inside:auto}
+    header{padding-top:0}
+    @page{margin:14mm 13mm}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Heimtraining · Ohne Geräte</p>
+    <h1>自重训练计划<br>下肢主项 + 核心修复</h1>
+    <p class="sub">肩膀康复期版本 — 全部动作不压肩、不撑地</p>
+    <div class="meta">
+      <div>每周<b>3–4 次</b></div>
+      <div>单次<b>30–35 分</b></div>
+      <div>动作<b>13 个</b></div>
+      <div>总组数<b>39 组</b></div>
+    </div>
+    <div class="progress">
+      <div class="track"><i id="pbar"></i></div>
+      <div class="pct" id="ppct">0 / 27</div>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head"><h2>下肢</h2><span>MAIN · 先做</span></div>
+    <p class="sec-note">这部分是消耗和保肌的主力，不是配菜。组间休息 60–90 秒。</p>
+    <div id="lower"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>核心</h2><span>CORE · 顺序有意义</span></div>
+    <p class="sec-note">第 1 个动作是后面所有动作的基础，别跳过。组间休息 30–45 秒。</p>
+
+    <div class="breath">
+      <div class="breath-top">
+        <p><b>呼吸节奏器</b><br>吸气 4 秒 · 呼气收下腹 6 秒</p>
+        <button class="ghost" id="bBtn">开始</button>
+      </div>
+      <div class="breath-bar" id="bBar"><i></i></div>
+      <div class="breath-label" id="bLab">待机</div>
+      <div class="breath-foot">
+        <div class="breath-count idle" id="bCnt">—</div>
+        <div class="snd">
+          <button id="sTone" class="on">提示音</button>
+          <button id="sTick">秒拍</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="core"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>盆底</h2><span>PELVIC · 维持</span></div>
+    <p class="sec-note">你跑 6 公里无症状，说明盆底肌在动态负荷下能工作 — 这一组是维持和整合，不是康复。可以跟训练一起做，也可以单独每天做，5 分钟。组间休息 30 秒。</p>
+    <div id="pelvic"></div>
+  </section>
+
+  <div class="rules">
+    <h2>三条贯穿所有动作的原则</h2>
+    <ol>
+      <li><b>每组开始前先呼气收下腹</b>，再开始动。吸一口气 → 呼气时下腹轻轻往内收（拉拉链）→ 保持这个状态开始动作。用三成力，不是死命绷紧。</li>
+      <li><b>全程正常呼吸。</b>任何动作憋气都是错的。</li>
+      <li><b>慢 &gt; 多。</b>代偿着做完 15 次没有意义，宁可少做几次做标准。</li>
+    </ol>
+    <p class="tail">加难度的顺序：做满次数且最后一组还轻松 → 放慢下落 → 加顶点停顿 → 加次数或组数 → 改单腿 / 加大幅度。<b style="color:#fff">一次只加一项。</b></p>
+  </div>
+
+  <footer>
+    <p style="margin:0 0 6px"><b>时间不够时</b>：砍动作，不砍组数。只有 20 分钟就做深蹲、单腿臀桥、死虫式、蚌式各三组，比九个动作各做一组有用。</p>
+    <p style="margin:0">肩膀恢复、理疗师放行后，再把哑铃版本加回来。</p>
+  </footer>
+</div>
+
+<div class="rest" id="rest">
+  <div class="rest-bar"><i id="rfill"></i></div>
+  <div class="rest-in">
+    <div>
+      <div class="t" id="rnum">90</div>
+      <p class="cue">休息 — 下一组开始前先呼气收下腹</p>
+    </div>
+    <button id="rskip">跳过</button>
+  </div>
+</div>
+
+<script>
+const LOWER = [
+  {n:"自重深蹲", tag:"兼练盆底", rx:"15 次 × 3 组", pts:[
+    "双脚略宽于肩，脚尖外展 15–30°，<b>膝盖始终顺着脚尖方向</b>",
+    "蹲到大腿接近平行或更低，前提是腰不塌",
+    "起身用臀腿推地，不是用腰把上半身甩起来",
+    "下蹲吸气，起身呼气 + 收下腹"
+  ], bad:"膝盖内扣、重心全压前脚掌、起身时屁股先抬。太轻松了就把下蹲放慢到 3 秒，或底部停 2 秒。"},
+
+  {n:"分腿蹲", rx:"每侧 10 次 × 3 组", pts:[
+    "前后脚拉开约一条腿的距离，后脚跟离地",
+    "<b>垂直上下</b>，不是往前顶；后膝接近地面但不撞",
+    "躯干直立或微前倾，不能弓腰",
+    "前腿承重 70–80%，发力感在前侧臀腿",
+    "手只轻扶墙保持平衡，别把体重压上去"
+  ], bad:"步子太小会让膝盖过度前移，先把前后距离拉够再练。"},
+
+  {n:"单腿臀桥", tag:"兼练盆底", rx:"每侧 10 次 × 3 组", pts:[
+    "仰卧屈膝，一条腿抬起，支撑脚<b>脚跟</b>发力顶起",
+    "顶点髋膝肩成一条线，停 1–2 秒主动挤臀",
+    "<b>骨盆不能左右倾斜</b> — 这是这个动作最关键的地方"
+  ], bad:"顶太高会用腰代偿。腰酸就是顶过了，降低高度。"},
+
+  {n:"靠墙静蹲", rx:"30–45 秒 × 3 组", pts:[
+    "背贴墙，脚往前走到大腿接近平行，膝盖在脚踝正上方",
+    "<b>腰贴紧墙不留空隙</b> — 这一条让它同时练到核心",
+    "重量在脚跟，全程正常呼吸别憋气"
+  ], bad:"越撑越往下滑就是撑不住了，提前结束这组，别硬耗。"}
+];
+
+const CORE = [
+  {n:"仰卧呼吸 + 收下腹", tag:"兼练盆底", rx:"10 次 × 3 组", pts:[
+    "屈膝仰卧，一手放胸口，一手放下腹",
+    "吸气时肋骨往两侧扩，<b>胸口不鼓</b>",
+    "呼气时慢慢把下腹往内收，保持 3–5 秒"
+  ], bad:"肩颈和臀部完全不参与。发现自己在夹屁股或憋气，就是用力过头了。"},
+
+  {n:"死虫式（只动腿）", tag:"兼练盆底", rx:"每侧 10 次 × 3 组", pts:[
+    "仰卧，双腿抬成髋 90°/膝 90°，双手放骨盆两侧",
+    "呼气收下腹，一条腿缓慢下放，脚跟接近地面再收回，一下 3–4 秒",
+    "<b>腰全程贴地</b> — 手掌垫在腰下，压力一消失就是幅度超了"
+  ], bad:"放太快、放太低、憋气 — 三个最常见的问题。"},
+
+  {n:"仰卧交替脚跟点地", rx:"每侧 12 次 × 3 组", pts:[
+    "同死虫式姿势，幅度更小，脚跟轻点地面就收回",
+    "死虫式腰会离地的话，先只做这个，练两周再进阶"
+  ], bad:"这是降级动作，不是补充动作。能标准做死虫式就可以省掉它。"},
+
+  {n:"侧卧蚌式", rx:"每侧 15 次 × 3 组", pts:[
+    "侧卧屈膝约 90°，两脚跟并拢，上侧膝盖打开、<b>脚跟不分开</b>",
+    "骨盆不能往后倒 — 背后靠墙就能检查",
+    "发力感在屁股侧上方（臀中肌），不是大腿前侧",
+    "顶点停 1 秒"
+  ], bad:"骨盆一往后翻就变成大腿在动，练不到目标肌。"},
+
+  {n:"侧卧直腿抬", rx:"每侧 12 次 × 3 组", pts:[
+    "身体成一条直线，下面那条腿微屈稳定",
+    "上腿伸直，<b>脚尖朝前</b>，抬到 30–45° 就够",
+    "放下时要慢，离心才是重点"
+  ], bad:"脚尖朝天会变成练大腿前侧，白做。"}
+];
+
+const PELVIC = [
+  {n:"呼吸同步激活", rx:"10 次 × 3 组", pts:[
+    "仰卧屈膝或坐直，呼气收下腹的<b>同时</b>轻轻上提盆底（像忍住排气的感觉）",
+    "提起来保持 3–5 秒，<b>然后完全放松 5 秒</b>",
+    "放松的时间不能比收紧短 — 这是最容易被省掉的一半"
+  ], bad:"夹屁股、夹大腿、憋气 = 用错肌肉了。手放在臀部上，如果摸到臀肌在动就重来。"},
+
+  {n:"快速收放", rx:"10 次 × 3 组", pts:[
+    "快速提起、立刻放松，大约 1 秒一次",
+    "练的是反射性收缩 — 咳嗽、打喷嚏、跑步落地那一瞬间用的就是这个",
+    "每组之间休息够，别连着做"
+  ], bad:"越做越提不上来就是疲劳了，直接停。疲劳状态下继续练是在练代偿。"},
+
+  {n:"长时保持", rx:"8 次 × 3 组", pts:[
+    "提起来保持 8–10 秒，<b>全程正常呼吸</b>，然后放松 10 秒",
+    "这是耐力，对应长时间站着、抱孩子的场景"
+  ], bad:"憋气，或中途已经松掉了自己没发现。保持不住 8 秒就先做 5 秒，慢慢加。"},
+
+  {n:"主动放松", rx:"60 秒 × 3 组", pts:[
+    "深蹲位（脚跟着地、屁股沉下去）或跪坐前趴，缓慢深呼吸",
+    "吸气时想象盆底往下、往外扩开",
+    "<b>这是正式训练，不是休息。</b>盆底肌练过头会变成高张力状态 — 症状是尿频、下腹坠胀、性交痛，反而更麻烦"
+  ], bad:"跳过这个动作。收紧和放松的能力同样重要，只练收紧是常见的过度训练路径。"}
+];
+
+let done = 0;
+const TOTAL = 39;
+
+function render(list, mount, offset, rest){
+  const el = document.getElementById(mount);
+  el.innerHTML = list.map((e,i)=>`
+    <div class="ex">
+      <div class="ex-main">
+        <div class="ex-title"><span class="num">${String(offset+i+1).padStart(2,"0")}</span><h3>${e.n}</h3>${e.tag?`<span class="tag">${e.tag}</span>`:""}</div>
+        <div class="rx">${e.rx}</div>
+        <div class="sets" data-rest="${rest}">
+          <small>组</small>
+          <button class="set">1</button><button class="set">2</button><button class="set">3</button>
+        </div>
+      </div>
+      <details>
+        <summary>动作要点</summary>
+        <div class="body">
+          <ul>${e.pts.map(p=>`<li>${p}</li>`).join("")}</ul>
+          <div class="flag"><p><b>常见错误</b>${e.bad}</p></div>
+        </div>
+      </details>
+    </div>`).join("");
+}
+render(LOWER,"lower",0,90);
+render(CORE,"core",4,40);
+render(PELVIC,"pelvic",9,30);
+
+/* ---- set tracking + rest timer ---- */
+const rest = document.getElementById("rest"),
+      rnum = document.getElementById("rnum"),
+      rfill= document.getElementById("rfill"),
+      pbar = document.getElementById("pbar"),
+      ppct = document.getElementById("ppct");
+let rtimer = null, restRunning = false;
+
+function updateProgress(){
+  pbar.style.width = (done/TOTAL*100)+"%";
+  ppct.textContent = done+" / "+TOTAL;
+}
+function startRest(sec){
+  clearInterval(rtimer);
+  let left = sec;
+  restRunning = true; awake(true);
+  rest.classList.add("up");
+  rnum.textContent = left;
+  rfill.style.width = "100%";
+  rtimer = setInterval(()=>{
+    left--;
+    rnum.textContent = Math.max(left,0);
+    rfill.style.width = (left/sec*100)+"%";
+    if(left > 0 && left <= 3) restTick();
+    if(left <= 0){
+      clearInterval(rtimer); restDone(); restRunning = false;
+      if(!breathing) awake(false);
+      setTimeout(()=>rest.classList.remove("up"), 900);
+    }
+  },1000);
+}
+document.getElementById("rskip").onclick = ()=>{ clearInterval(rtimer); restRunning=false; if(!breathing) awake(false); rest.classList.remove("up"); };
+
+document.addEventListener("click", ev=>{
+  const b = ev.target.closest(".set");
+  if(!b) return;
+  ac();
+  const was = b.classList.contains("done");
+  b.classList.toggle("done");
+  done += was ? -1 : 1;
+  updateProgress();
+  if(!was) startRest(parseInt(b.parentElement.dataset.rest,10));
+});
+
+/* ---- expand everything when printing ---- */
+window.addEventListener("beforeprint", ()=>{
+  document.querySelectorAll("details").forEach(d=>{ d.dataset.was = d.open?"1":"0"; d.open = true; });
+});
+window.addEventListener("afterprint", ()=>{
+  document.querySelectorAll("details").forEach(d=>{ d.open = d.dataset.was === "1"; });
+});
+
+/* ---- audio ---- */
+let AC = null, tone = true, tick = false;
+function ac(){
+  if(!AC){ const C = window.AudioContext || window.webkitAudioContext; AC = new C(); }
+  if(AC.state === "suspended") AC.resume();
+  return AC;
+}
+function blip(freq, dur, gain, type, delay){
+  if(!AC) return;
+  const c = AC, t = c.currentTime + (delay||0);
+  const o = c.createOscillator(), g = c.createGain();
+  o.type = type || "sine";
+  o.frequency.setValueAtTime(freq, t);
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(gain, t + 0.012);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g); g.connect(c.destination);
+  o.start(t); o.stop(t + dur + 0.03);
+}
+const chimeIn  = ()=>{ if(tone){ blip(523.25,.16,.28,"sine",0); blip(783.99,.20,.24,"sine",.10);} };
+const chimeOut = ()=>{ if(tone){ blip(659.25,.16,.28,"sine",0); blip(392.00,.26,.24,"sine",.10);} };
+const clickTick= ()=>{ if(tick) blip(1400,.028,.10,"square",0); };
+const restTick = ()=>{ if(tone) blip(880,.05,.16,"triangle",0); };
+const restDone = ()=>{ if(tone){ blip(659.25,.14,.3,"sine",0); blip(880,.22,.26,"sine",.12);} };
+
+/* ---- keep screen awake while something is running ---- */
+let wl = null;
+async function awake(on){
+  try{
+    if(on && "wakeLock" in navigator && !wl){
+      wl = await navigator.wakeLock.request("screen");
+      wl.addEventListener("release", ()=>{ wl = null; });
+    }else if(!on && wl){ await wl.release(); wl = null; }
+  }catch(e){}
+}
+document.addEventListener("visibilitychange", ()=>{
+  if(document.visibilityState === "visible" && (breathing || restRunning)) awake(true);
+});
+
+/* ---- breath pacer ---- */
+const IN = 4, OUT = 6, CYCLE = IN + OUT;
+const bBtn=document.getElementById("bBtn"), bBar=document.getElementById("bBar"),
+      bFill=bBar.querySelector("i"), bLab=document.getElementById("bLab"),
+      bCnt=document.getElementById("bCnt");
+let breathing=false, bTimer=null, bPos=0;
+
+function breathStep(){
+  const pos = bPos % CYCLE, inhale = pos < IN;
+  if(pos === 0){
+    bBar.classList.remove("out"); bFill.style.width = "100%";
+    bLab.textContent = "吸气 — 肋骨往两侧扩"; chimeIn();
+  }else if(pos === IN){
+    bBar.classList.add("out"); bFill.style.width = "6%";
+    bLab.textContent = "呼气 — 下腹往内收，像拉拉链"; chimeOut();
+  }else clickTick();
+  bCnt.textContent = inhale ? (IN - pos) : (CYCLE - pos);
+  bPos++;
+}
+bBtn.onclick = ()=>{
+  breathing = !breathing;
+  bBtn.textContent = breathing ? "停止" : "开始";
+  if(breathing){
+    ac(); bPos = 0; bCnt.classList.remove("idle");
+    breathStep(); bTimer = setInterval(breathStep, 1000); awake(true);
+  }else{
+    clearInterval(bTimer); bFill.style.width = "6%"; bBar.classList.remove("out");
+    bLab.textContent = "待机"; bCnt.textContent = "—"; bCnt.classList.add("idle");
+    if(!restRunning) awake(false);
+  }
+};
+document.getElementById("sTone").onclick = e=>{ tone = !tone; e.target.classList.toggle("on", tone); if(tone) ac(); };
+document.getElementById("sTick").onclick = e=>{ tick = !tick; e.target.classList.toggle("on", tick); if(tick) ac(); };
+
+/* ---- expand everything when printing ---- */
+window.addEventListener("beforeprint", ()=>{
+  document.querySelectorAll("details").forEach(d=>{ d.dataset.was = d.open?"1":"0"; d.open = true; });
+});
+window.addEventListener("afterprint", ()=>{
+  document.querySelectorAll("details").forEach(d=>{ d.open = d.dataset.was === "1"; });
+});
+
+/* ---- offline ---- */
+if("serviceWorker" in navigator){
+  window.addEventListener("load", ()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+}
+</script>
+</body>
+</html>
