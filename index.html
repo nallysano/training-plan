@@ -74,6 +74,20 @@
   .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--accent);
        border:1px solid var(--accent);padding:2px 6px;white-space:nowrap;align-self:center}
   .rx{font-family:var(--mono);font-size:13px;color:var(--accent);margin:6px 0 0 22px}
+  .tempo{display:flex;align-items:center;gap:10px;margin:11px 0 0 22px;flex-wrap:wrap}
+  .tBtn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:6px 11px;cursor:pointer;
+        border:1px solid var(--accent);background:none;color:var(--accent)}
+  .tBtn.on{background:var(--accent);color:#fff}
+  .tState{font-family:var(--mono);font-size:12px;color:var(--muted);min-width:0}
+  .tState em{font-style:normal;color:var(--ink);font-weight:700;font-size:15px}
+  .tBar{flex:0 0 100%;height:3px;background:var(--line);position:relative;margin-top:2px;display:none}
+  .tBar.show{display:block}
+  .tBar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--accent);transition:width .2s linear}
+  .mine{background:var(--accent-soft);border-left:3px solid var(--accent);
+        padding:10px 12px;margin:12px 0 0 22px;font-size:13.5px;color:var(--ink-2);line-height:1.65}
+  .mine b{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--accent);
+          display:block;margin-bottom:4px}
+  .mine em{font-style:normal;color:var(--ink);font-weight:700}
   .mus{font-size:12.5px;color:var(--muted);margin:5px 0 0 22px;line-height:1.5}
   .mus b{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--accent);margin-right:7px}
   .sets{display:flex;gap:8px;align-items:center;margin:13px 0 0 22px;flex-wrap:wrap}
@@ -146,7 +160,7 @@
   @media print{
     body{background:#fff;padding-bottom:0;font-size:11pt;line-height:1.55}
     .wrap{max-width:none;padding:0}
-    .rest,.progress,.tabs,.breath{display:none !important}
+    .rest,.progress,.tabs,.breath,.tempo{display:none !important}
     .ex,.card{border:1px solid #BBB;break-inside:avoid;background:#fff}
     .pane[hidden]{display:block !important}
     details{display:block !important}
@@ -239,6 +253,8 @@
           <li><b>每组开始前先呼气收下腹</b>，再开始动。用三成力，不是死命绷紧</li>
           <li><b>全程正常呼吸。</b>任何动作憋气都是错的</li>
           <li><b>慢 &gt; 多。</b>代偿着做完没有意义，宁可少做几次做标准</li>
+          <li><b>核心动作感觉不到，第一反应是放慢，不是加次数。</b>放慢加停顿能提高难度，又不会增加髋屈肌的负担</li>
+          <li><b>留意大腿前侧。</b>髋屈肌代偿是你最容易出现的模式 — 大腿明显盖过腹部，就是超了</li>
         </ul>
       </div>
     </div>
@@ -301,7 +317,7 @@
 <script>
 /* ============ 动作库 ============ */
 const EX = {
- wall:{n:"靠墙站立对齐", tag:"热身", mus:"深层背伸肌 · 颈深屈肌 — 主要练对齐的感觉，不是练肌肉", rx:"60 秒 × 1 组", rest:0, pts:[
+ wall:{n:"靠墙站立对齐", tag:"热身", mus:"深层背伸肌 · 颈深屈肌 — 主要练对齐的感觉，不是练肌肉", mine:"第一次做没问题，按原样练。", rx:"60 秒 × 1 组", rest:0, pts:[
    "后脑、上背、屁股贴墙，脚跟离墙约 5–10 厘米",
    "<b>腰和墙之间留一个手掌的厚度</b> — 不是把腰压平",
    "想象头顶有根线往上提，肋骨落在骨盆正上方",
@@ -376,7 +392,7 @@ const EX = {
    "跟着上面的呼吸节奏器做最省心"],
    bad:"肩颈和臀部完全不参与。发现自己在夹屁股或憋气，就是用力过头了。"},
 
- deadbug:{n:"死虫式", tag:"兼练盆底", mus:"腹横肌 · 腹直肌（抗伸展）", rx:"每侧 10 次 × 3 组", rest:45,
+ deadbug:{n:"死虫式", tag:"兼练盆底", mus:"腹横肌 · 腹直肌（抗伸展）", mine:"<em>下放 4 秒 · 最低点停 2 秒 · 收回 2 秒。</em>慢和停顿是这个动作的主体，不是可选项 — 你试过快节奏没感觉，慢下来立刻就有。静止腿可以踩地，哪个版本下腹感觉清楚就用哪个。", rx:"每侧 8 次 × 3 组（慢速）", rest:45,
    prog:["<b>1 级</b>：只动腿，脚跟下放到接近地面（现在从这里开始）",
          "<b>2 级</b>：下放的那条腿<b>完全伸直</b>，幅度更大",
          "<b>3 级</b>：脚踝加 0.5–1 公斤沙袋，或用那对 2 公斤哑铃夹在脚上",
@@ -394,7 +410,7 @@ const EX = {
    "腰一旦离地就是幅度超了，缩小范围"],
    bad:"做太快、用大腿甩。这个动作慢比多重要。"},
 
- legdrop:{n:"仰卧单腿直腿下放", tag:"进阶", mus:"腹横肌 · 腹直肌下段（抗伸展）", rx:"每侧 8 次 × 3 组", rest:45,
+ legdrop:{n:"仰卧单腿直腿下放", tag:"进阶", mus:"腹横肌 · 腹直肌下段（抗伸展）", mine:"<em>放到「腰开始要用力」之前就收回。</em>不用等腰抬起来，那个信号更早也更准。幅度小完全不影响效果，能力上来了幅度会自己变大。", rx:"每侧 6–8 次 × 3 组", rest:45,
    prog:["<b>1 级</b>：只下放到 45°",
          "<b>2 级</b>：下放到脚跟接近地面",
          "<b>3 级</b>：下放 4 秒 + 底部停 2 秒"], pts:[
@@ -427,7 +443,7 @@ const EX = {
    "屁股放松，不用夹臀发力"],
    bad:"抬太高变成用腰硬折、抬头看前方、憋气。幅度小而准比抬得高有用。"},
 
- curl:{n:"卷腹", tag:"腹直肌", mus:"腹直肌上段 · 腹斜肌", rx:"15 次 × 3 组", rest:45,
+ curl:{n:"卷腹", tag:"腹直肌", mus:"腹直肌上段 · 腹斜肌", mine:"<em>先用离心版：</em>坐起来（手撑一下没关系）→ 后仰到一半 → 用 5 秒慢慢躺回去。8 次 × 3 组。三四周后再试正常卷腹。", rx:"8 次 × 3 组（离心版）", rest:45,
    prog:["<b>1 级</b>：双手放大腿上，卷起来时手滑到膝盖",
          "<b>2 级</b>：双手轻放耳侧（不抱头、不用手拉）",
          "<b>3 级</b>：顶点停 2 秒，或胸前抱个重物"], pts:[
@@ -490,6 +506,28 @@ const DAYS = {
     ]}
 };
 
+/* ============ 动作节奏 ============ */
+/* p: [标签, 秒数, 音型]  音型 lo=离心/下放  hi=向心/收回  hold=停顿 */
+const TEMPO = {
+  deadbug:{reps:8, side:true,  p:[["下放",4,"lo"],["停住",2,"hold"],["收回",2,"hi"]]},
+  legdrop:{reps:7, side:true,  p:[["下放",3,"lo"],["停住",1,"hold"],["收回",2,"hi"]]},
+  heel:   {reps:12,side:true,  p:[["下放",3,"lo"],["点地",1,"hold"],["收回",2,"hi"]]},
+  curl:   {reps:8, side:false, p:[["卷起",2,"hi"],["停住",1,"hold"],["躺回",5,"lo"]]},
+  revcurl:{reps:12,side:false, p:[["卷起",2,"hi"],["停住",1,"hold"],["放回",3,"lo"]]},
+  sidelift:{reps:12,side:true, p:[["抬起",2,"hi"],["停住",1,"hold"],["放下",3,"lo"]]},
+  sidedouble:{reps:8,side:true,p:[["抬起",2,"hi"],["保持",2,"hold"],["放下",3,"lo"]]},
+  clam:   {reps:15,side:true,  p:[["打开",2,"hi"],["停住",1,"hold"],["合回",2,"lo"]]},
+  ext:    {reps:10,side:false, p:[["抬胸",2,"hi"],["停住",2,"hold"],["放下",2,"lo"]]},
+  glute1: {reps:12,side:true,  p:[["顶起",2,"hi"],["挤臀",2,"hold"],["放下",2,"lo"]]},
+  thrust: {reps:12,side:false, p:[["顶起",2,"hi"],["挤臀",1,"hold"],["放下",3,"lo"]]},
+  bulg:   {reps:10,side:true,  p:[["下沉",3,"lo"],["起身",1,"hi"]]},
+  squat:  {reps:15,side:false, p:[["下蹲",3,"lo"],["起身",1,"hi"]]},
+  srdl:   {reps:10,side:true,  p:[["前倾",3,"lo"],["起身",2,"hi"]]},
+  pf1:    {reps:10,side:false, p:[["提起",1,"hi"],["保持",4,"hold"],["放松",5,"lo"]]},
+  pf2:    {reps:10,side:false, p:[["提起",1,"hi"],["放松",1,"lo"]]},
+  pf3:    {reps:8, side:false, p:[["提起",1,"hi"],["保持",8,"hold"],["放松",10,"lo"]]}
+};
+
 /* ============ 示意图 ============ */
 const FIG = {"breath": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"34\" cy=\"96\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"46,96 118,96\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"118,96 150,66 168,106\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"70,96 78,82\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"104,96 110,82\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"44\" x2=\"122\" y2=\"60\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"152\" y=\"40\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">呼气时下腹内收</text></svg>", "deadbug": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"34\" cy=\"96\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"46,96 120,96\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 120,56 158,56\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 128,74 166,80\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"88\" x2=\"158\" y2=\"102\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"126\" y=\"46\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">膝盖保持 90°</text></svg>", "legdrop": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"34\" cy=\"96\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"46,96 120,96\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 124,40\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 170,72\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"176\" y1=\"76\" x2=\"186\" y2=\"100\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"128\" y=\"34\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">两腿都伸直</text></svg>", "heel": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"34\" cy=\"96\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"46,96 120,96\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 120,56 158,56\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 132,78 160,104\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"168\" y1=\"92\" x2=\"168\" y2=\"104\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"150\" y=\"118\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">脚跟轻点即收回</text></svg>", "sidelift": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"30\" cy=\"84\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"42,86 120,90\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,90 152,100 182,102\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,88 160,72 192,62\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M186,88 A34,34 0 0,1 196,62\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"126\" y=\"44\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">只有上面这条腿动</text></svg>", "sidedouble": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"30\" cy=\"82\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"42,84 118,88\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"118,88 160,80 196,74\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"118,92 160,84 196,78\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"180\" y1=\"96\" x2=\"188\" y2=\"78\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"120\" y=\"44\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">两条腿并拢一起抬</text><text x=\"120\" y=\"58\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">只需离地几厘米</text></svg>", "clam": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"30\" cy=\"84\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"42,86 112,90\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,90 150,98 150,104\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,88 150,72 152,100\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M154,92 A30,30 0 0,1 156,68\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"120\" y=\"44\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">膝盖打开</text><text x=\"120\" y=\"58\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">脚跟不分开</text></svg>", "ext": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"48\" cy=\"84\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"60,86 120,100 200,104\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"72,92 100,104\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"52\" y1=\"66\" x2=\"46\" y2=\"78\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"60\" y=\"58\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">胸口抬起几厘米</text><text x=\"120\" y=\"120\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">眼睛看地面</text></svg>", "glute1": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"30\" cy=\"100\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"42,100 112,72\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,72 140,100 162,104\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,72 172,56\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"104\" y1=\"44\" x2=\"112\" y2=\"62\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"106\" y=\"36\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">髋膝肩成一条线</text></svg>", "thrust": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><rect x=\"14\" y=\"52\" width=\"26\" height=\"56\" fill=\"none\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><text x=\"27.0\" y=\"84.0\" font-size=\"9\" fill=\"#7C877F\" text-anchor=\"middle\" font-family=\"sans-serif\">沙发</text><circle cx=\"30\" cy=\"46\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"40,62 116,62\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"116,62 146,100 170,104\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"116,62 128,46\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"100\" y1=\"34\" x2=\"106\" y2=\"52\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"104\" y=\"26\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">顶到水平，挤臀停 1 秒</text></svg>", "bulg": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><rect x=\"170\" y=\"74\" width=\"46\" height=\"34\" fill=\"none\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><text x=\"193.0\" y=\"95.0\" font-size=\"9\" fill=\"#7C877F\" text-anchor=\"middle\" font-family=\"sans-serif\">椅子</text><circle cx=\"74\" cy=\"24\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"74,34 78,68\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"78,68 66,90 60,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"78,68 130,82 172,74\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"44\" y1=\"52\" x2=\"44\" y2=\"76\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"20\" y=\"44\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">垂直下沉</text></svg>", "squat": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"96\" cy=\"26\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"96,36 108,66\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"108,66 78,84 86,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"108,66 138,84 130,108\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"160\" y1=\"48\" x2=\"160\" y2=\"78\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"140\" y=\"40\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">下落 3 秒</text></svg>", "srdl": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"58\" cy=\"44\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"68,48 116,62\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"116,62 120,86 118,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"116,62 162,56 196,52\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"96\" y1=\"30\" x2=\"74\" y2=\"40\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"100\" y=\"24\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">髋往后推，像跷跷板</text></svg>", "band": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"112\" cy=\"26\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"112,36 112,62\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,62 92,84 88,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,62 134,84 140,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><ellipse cx=\"113\" cy=\"84\" rx=\"26\" ry=\"7\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3\"/><line x1=\"150\" y1=\"96\" x2=\"190\" y2=\"96\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><line x1=\"76\" y1=\"96\" x2=\"36\" y2=\"96\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"112\" y=\"20\" font-size=\"10\" fill=\"#7C877F\" text-anchor=\"middle\" font-family=\"sans-serif\">保持半蹲高度</text></svg>", "wall": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><line x1=\"60\" y1=\"8\" x2=\"60\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"3\"/><circle cx=\"72\" cy=\"26\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"72,36 70,66 74,88 74,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M64,66 q-6,4 0,8\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.4\"/><line x1=\"96\" y1=\"22\" x2=\"80\" y2=\"16\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"100\" y=\"26\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">头顶往上提</text><text x=\"86\" y=\"74\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">腰后留一手掌厚</text></svg>", "wallsit": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><line x1=\"58\" y1=\"8\" x2=\"58\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"3\"/><circle cx=\"70\" cy=\"30\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"70,40 70,72\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"70,72 124,72 124,108\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><text x=\"88\" y=\"60\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">大腿接近水平</text><text x=\"130\" y=\"96\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">膝在踝正上方</text></svg>", "pf4": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"96\" cy=\"34\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"96,44 104,72\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"104,72 76,92 84,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"104,72 132,92 126,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"60\" x2=\"150\" y2=\"88\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"130\" y=\"52\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">吸气时盆底</text><text x=\"130\" y=\"64\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">往下往外扩</text></svg>", "curl": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"38\" cy=\"82\" r=\"9\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3\"/><polyline points=\"50,84 78,92 120,96\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 152,66 172,106\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"56,90 74,98\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"40\" y1=\"56\" x2=\"46\" y2=\"70\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"46\" y=\"48\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">肩胛离地即可</text><text x=\"120\" y=\"120\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">腰不离地</text></svg>", "revcurl": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"34\" cy=\"96\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"46,96 112,96\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,92 126,62 152,70\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M140,92 A34,34 0 0,1 126,58\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"126\" y=\"42\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">用下腹把骨盆卷起来</text><text x=\"60\" y=\"118\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">不是用腿甩</text></svg>"};
 
@@ -507,6 +545,7 @@ const BREATH_HTML = `
       <div class="snd">
         <button class="sTone on">提示音</button>
         <button class="sTick">秒拍</button>
+        <button class="sTest">试听</button>
       </div>
     </div>
   </div>`;
@@ -521,7 +560,13 @@ function exHTML(key, idx){
       <div class="ex-title"><span class="num">${String(idx).padStart(2,"0")}</span><h4>${e.n}</h4>${e.tag?`<span class="tag">${e.tag}</span>`:""}</div>
       <div class="rx">${e.rx}</div>
       ${e.mus?`<div class="mus"><b>练哪里</b>${e.mus}</div>`:""}
+      ${e.mine?`<div class="mine"><b>你的规格</b>${e.mine}</div>`:""}
       <div class="sets" data-rest="${e.rest}"><small>组</small>${dots}</div>
+      ${TEMPO[key]?`<div class="tempo" data-ex="${key}">
+        <button class="tBtn">节奏 ${TEMPO[key].p.map(x=>x[1]).join("-")}</button>
+        <span class="tState">${TEMPO[key].side?"跟一侧":""}</span>
+        <div class="tBar"><i></i></div>
+      </div>`:""}
     </div>
     <details><summary>动作要点 · 示意图</summary><div class="body">
       ${FIG[key]?`<div class="fig">${FIG[key]}</div>`:""}
@@ -561,9 +606,30 @@ document.querySelectorAll(".tabs button").forEach(btn=>{
 });
 
 /* ============ audio ============ */
-let AC=null, tone=true, tick=false;
-function ac(){ if(!AC){ const C=window.AudioContext||window.webkitAudioContext; AC=new C(); }
-  if(AC.state==="suspended") AC.resume(); return AC; }
+let AC=null, tone=true, tick=false, unlocked=false;
+
+/* 静音开关绕过：先播一段无声音频，把页面挂到媒体声道上 */
+const SILENT = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA");
+SILENT.loop = true; SILENT.volume = 0.01;
+try{ SILENT.setAttribute("playsinline",""); }catch(e){}
+
+function ac(){
+  if(!AC){ const C=window.AudioContext||window.webkitAudioContext; if(!C) return null; AC=new C(); }
+  if(AC.state==="suspended") AC.resume();
+  if(!unlocked){
+    unlocked = true;
+    SILENT.play().catch(()=>{});
+    const b=AC.createBuffer(1,1,22050), src=AC.createBufferSource();
+    src.buffer=b; src.connect(AC.destination); src.start(0);
+  }
+  return AC;
+}
+/* 页面上第一次任何触碰都解锁音频 */
+["pointerdown","touchend","click"].forEach(evt=>
+  document.addEventListener(evt, ()=>ac(), {once:true, passive:true}));
+document.addEventListener("visibilitychange", ()=>{
+  if(document.visibilityState==="visible" && AC && AC.state==="suspended") AC.resume();
+});
 function blip(f,d,g,t,delay){
   if(!AC) return;
   const c=AC, s=c.currentTime+(delay||0), o=c.createOscillator(), gn=c.createGain();
@@ -620,6 +686,12 @@ function wireBreath(scope){
   };
   scope.querySelector(".sTone").onclick = e=>{ tone=!tone; e.target.classList.toggle("on",tone); if(tone) ac(); };
   scope.querySelector(".sTick").onclick = e=>{ tick=!tick; e.target.classList.toggle("on",tick); if(tick) ac(); };
+  scope.querySelector(".sTest").onclick = e=>{
+    ac(); const before = tone; tone = true; chimeIn(); tone = before;
+    const st = AC ? AC.state : "无";
+    e.target.textContent = "试听·" + st;
+    setTimeout(()=>{ e.target.textContent = "试听"; }, 2500);
+  };
 }
 
 /* ============ sets + rest ============ */
@@ -653,6 +725,73 @@ document.addEventListener("click", ev=>{
   pane.querySelector(".track i").style.width=(done/total*100)+"%";
   pane.querySelector(".pct").textContent=done+" / "+total;
   if(!was) startRest(+b.parentElement.dataset.rest);
+});
+
+
+/* ============ 节奏引擎 ============ */
+const TVOICE = {
+  lo:  ()=>{ if(tone) blip(330,.13,.26,"sine",0); },
+  hi:  ()=>{ if(tone) blip(660,.13,.26,"sine",0); },
+  hold:()=>{ if(tone) blip(880,.05,.14,"triangle",0); }
+};
+let tRun = null;   // {el, timer}
+
+function stopTempo(){
+  if(!tRun) return;
+  clearInterval(tRun.timer);
+  const el = tRun.el;
+  el.querySelector(".tBtn").classList.remove("on");
+  el.querySelector(".tState").textContent = TEMPO[el.dataset.ex].side ? "跟一侧" : "";
+  el.querySelector(".tBar").classList.remove("show");
+  el.querySelector(".tBar i").style.width = "0";
+  tRun = null;
+  if(!anyBreathing && !restRunning) awake(false);
+}
+
+function startTempo(el){
+  stopTempo();
+  ac();
+  const cfg = TEMPO[el.dataset.ex];
+  const total = cfg.p.reduce((a,x)=>a+x[1],0);
+  const btn = el.querySelector(".tBtn"), st = el.querySelector(".tState"),
+        bar = el.querySelector(".tBar"), fill = bar.querySelector("i");
+  btn.classList.add("on"); bar.classList.add("show"); awake(true);
+  let rep = 0, t = 0;
+  tRun = {el, timer:null};
+
+  function frame(){
+    // 找到当前处于哪个阶段
+    let acc = 0, ph = cfg.p[0], left = 0;
+    for(const x of cfg.p){
+      if(t < acc + x[1]){ ph = x; left = acc + x[1] - t; break; }
+      acc += x[1];
+    }
+    if(t === 0 || cfg.p.some((x,i)=>t === cfg.p.slice(0,i).reduce((a,y)=>a+y[1],0))){
+      TVOICE[ph[2]]();
+    }else if(ph[2] === "hold"){ TVOICE.hold(); }
+    st.innerHTML = `<em>${ph[0]} ${left}</em> &nbsp; ${rep+1} / ${cfg.reps}`;
+    fill.style.width = (t/total*100) + "%";
+    t++;
+    if(t >= total){
+      t = 0; rep++;
+      if(rep >= cfg.reps){
+        if(tone){ blip(659.25,.14,.3,"sine",0); blip(880,.22,.26,"sine",.12); }
+        const ex = el.closest(".ex");
+        const next = ex.querySelector(".set:not(.done)");
+        stopTempo();
+        if(next) next.click();          // 自动打勾并开始休息
+        return;
+      }
+    }
+  }
+  frame();
+  tRun.timer = setInterval(frame, 1000);
+}
+
+document.addEventListener("click", ev=>{
+  const b = ev.target.closest(".tBtn"); if(!b) return;
+  const el = b.closest(".tempo");
+  if(tRun && tRun.el === el) stopTempo(); else startTempo(el);
 });
 
 /* ============ print / offline ============ */
