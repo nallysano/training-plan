@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>自重训练计划 · 腰腹与下肢</title>
+<title>训练计划 · 腰腹 · 臀腿 · 体态</title>
 <meta name="theme-color" content="#161E1A">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -13,501 +13,657 @@
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACAUlEQVR42u3dsdEBQRiAYXcjUIFAIFYCgUSsBz0oRA96EEsElKAUoQbMBWdm9/tun6cB/+7/3ufWuNEt16sZ/NLbAsSBOBAH4kAciANxIA7EgThAHIgDcSAOxIE4EAfiQByIA8SBOBAH4kAciANxIA7EgThAHIgDcSAOxIE4EAfiQByIA3GAOBAH4kAciANxIA7EgTgQB4gDcSAOxIE4iGFe/iU3+22Elb8fL//+YV3JnysPkoVEwr2tBCwj7F/lngNxhL9ADQ+TA3EgDqYTR+QTo9OsyUHgOGJeoMbGgKKfkIY6OsoiYhx4W0EciANxgDgQB+JAHIgDcSAOxIE4EAeIgwEVnpX9HA8t7Ozids++hKJf9mkki8kk0ivDqt1zEDWONsdG9rWbHIgDcZAvjgkc+htcu8lBgDjaHB6pV13hcUgfn4sDbyuIA3GAOBAH4kAciANxIA7EgTgQB4gDcTBGhWdld9eLfR/neTqXfLmiX/aRRa5EemWkU2wn3XNQOw5jI+N+mhyIA3GQL47CB3SnWZODqcRheKTbyQqPQzrWZrnAPCuLew7EgTgQB+JAHIgDcSAOxAHiQByIA3EgDsSBOBAH4kAcIA7EgTgQB+JAHIgDcSAOxAHiQByIA3EgDsSBOBAH4kAciAPEgTgQB+JAHIgDcSAOxIE4QByIg398AfVKQ3HgF3/lAAAAAElFTkSuQmCC">
 <style>
   :root{
-    --bg:#E9EDE7;
-    --paper:#FAFBF8;
-    --ink:#161E1A;
-    --ink-2:#4A554E;
-    --muted:#7C877F;
-    --line:#D2D9CF;
-    --accent:#0E6A5C;
-    --accent-soft:#D6E7E1;
+    --bg:#E9EDE7; --paper:#FAFBF8; --ink:#161E1A; --ink-2:#4A554E;
+    --muted:#7C877F; --line:#D2D9CF; --accent:#0E6A5C; --accent-soft:#D6E7E1;
     --flag:#6E3350;
     --mono:ui-monospace,"SF Mono","Roboto Mono",Menlo,Consolas,monospace;
-    --cjk:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC","Source Han Sans SC",sans-serif;
+    --cjk:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Noto Sans SC",sans-serif;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
-  body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:var(--cjk);
-    font-size:16px;
-    line-height:1.75;
-    -webkit-font-smoothing:antialiased;
-    padding-bottom:120px;
-  }
+  body{background:var(--bg);color:var(--ink);font-family:var(--cjk);font-size:16px;
+       line-height:1.75;-webkit-font-smoothing:antialiased;padding-bottom:120px}
   .wrap{max-width:640px;margin:0 auto;padding:0 18px}
 
-  /* ---------- header ---------- */
-  header{padding:34px 0 22px;border-bottom:1px solid var(--line)}
-  .eyebrow{
-    font-family:var(--mono);font-size:11px;letter-spacing:.22em;
-    text-transform:uppercase;color:var(--muted);margin:0 0 10px;
-  }
-  h1{font-size:27px;line-height:1.3;margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
-  .sub{color:var(--ink-2);font-size:14.5px;margin:0}
-  .meta{display:flex;gap:22px;margin-top:20px;flex-wrap:wrap}
-  .meta div{font-size:13px;color:var(--ink-2)}
-  .meta b{font-family:var(--mono);font-size:19px;font-weight:600;color:var(--ink);display:block;line-height:1.2}
+  header{padding:30px 0 0}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+           color:var(--muted);margin:0 0 10px}
+  h1{font-size:25px;line-height:1.32;margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
+  .sub{color:var(--ink-2);font-size:14px;margin:0 0 20px}
 
-  /* ---------- progress ---------- */
-  .progress{
-    margin-top:22px;display:flex;align-items:center;gap:12px;
-  }
+  .tabs{display:flex;border-bottom:1px solid var(--line);overflow-x:auto}
+  .tabs button{flex:1;white-space:nowrap;background:none;border:none;border-bottom:2px solid transparent;
+    font-family:var(--cjk);font-size:13.5px;color:var(--muted);padding:12px 10px;cursor:pointer}
+  .tabs button.on{color:var(--ink);border-bottom-color:var(--accent);font-weight:700}
+
+  .dayhead{padding:20px 0 0}
+  .dayhead h2{font-size:19px;margin:0 0 4px}
+  .dayhead p{margin:0;font-size:13.5px;color:var(--ink-2)}
+  .progress{display:flex;align-items:center;gap:12px;margin:16px 0 4px}
   .track{flex:1;height:3px;background:var(--line);position:relative;overflow:hidden}
   .track i{position:absolute;inset:0 auto 0 0;width:0;background:var(--accent);transition:width .35s ease}
-  .pct{font-family:var(--mono);font-size:12px;color:var(--muted);min-width:44px;text-align:right}
+  .pct{font-family:var(--mono);font-size:12px;color:var(--muted);min-width:48px;text-align:right}
 
-  /* ---------- section ---------- */
-  section{margin-top:38px}
-  .sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:4px}
-  .sec-head h2{font-size:17px;margin:0;font-weight:700;letter-spacing:.02em}
-  .sec-head span{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.12em}
-  .sec-note{font-size:13.5px;color:var(--ink-2);margin:0 0 16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
-  .tag{
-    font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--accent);
-    border:1px solid var(--accent);padding:2px 6px;white-space:nowrap;align-self:center;
-  }
+  .block{margin-top:26px}
+  .block-head{display:flex;align-items:baseline;gap:10px;margin-bottom:3px}
+  .block-head h3{font-size:16px;margin:0;font-weight:700}
+  .block-head span{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.12em}
+  .block-note{font-size:13px;color:var(--ink-2);margin:0 0 14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
 
-  /* ---------- breath pacer (signature) ---------- */
-  .breath{background:var(--paper);border:1px solid var(--line);padding:16px 16px 14px;margin-bottom:20px}
+  .breath{background:var(--paper);border:1px solid var(--line);padding:16px;margin-bottom:12px}
   .breath-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
   .breath-top p{margin:0;font-size:13.5px;color:var(--ink-2)}
   .breath-bar{height:2px;background:var(--line);margin-top:14px;position:relative}
-  .breath-bar i{
-    position:absolute;left:0;top:-3px;height:8px;width:6%;
-    background:var(--accent);transition:width 4s linear;
-  }
+  .breath-bar i{position:absolute;left:0;top:-3px;height:8px;width:6%;background:var(--accent);transition:width 4s linear}
   .breath-bar.out i{transition-duration:6s}
-  .breath-label{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--muted);margin-top:10px}
+  .breath-label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--muted);margin-top:10px}
   .breath-foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:10px;gap:12px}
-  .breath-count{font-family:var(--mono);font-size:30px;font-weight:600;line-height:1;color:var(--ink);min-width:34px}
+  .breath-count{font-family:var(--mono);font-size:30px;font-weight:600;line-height:1;min-width:34px}
   .breath-count.idle{color:var(--line)}
   .snd{display:flex;gap:6px}
-  .snd button{
-    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;padding:5px 9px;cursor:pointer;
-    border:1px solid var(--line);background:none;color:var(--muted);
-  }
+  .snd button,button.ghost{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;padding:5px 9px;
+    cursor:pointer;border:1px solid var(--line);background:none;color:var(--muted)}
   .snd button.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
-  button.ghost{
-    font-family:var(--cjk);font-size:13px;color:var(--accent);background:none;
-    border:1px solid var(--accent);padding:5px 12px;cursor:pointer;white-space:nowrap;
-  }
-  button.ghost:active{background:var(--accent-soft)}
+  button.ghost{font-family:var(--cjk);font-size:13px;color:var(--accent);border-color:var(--accent);padding:5px 12px}
 
-  /* ---------- exercise ---------- */
-  .ex{background:var(--paper);border:1px solid var(--line);margin-bottom:12px}
-  .ex-main{padding:16px 16px 14px}
+  .ex{background:var(--paper);border:1px solid var(--line);margin-bottom:10px}
+  .ex-main{padding:15px 16px 13px}
   .ex-title{display:flex;gap:10px;align-items:baseline}
   .num{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:2px}
-  .ex-title h3{margin:0;font-size:16.5px;font-weight:700;flex:1;line-height:1.45}
-  .rx{font-family:var(--mono);font-size:13px;color:var(--accent);margin:6px 0 0 22px;letter-spacing:.02em}
-
-  .sets{display:flex;gap:8px;align-items:center;margin:14px 0 0 22px;flex-wrap:wrap}
-  .sets small{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--muted);margin-right:2px}
-  .set{
-    width:38px;height:34px;border:1.5px solid var(--accent);background:none;cursor:pointer;
-    font-family:var(--mono);font-size:13px;color:var(--accent);padding:0;
-  }
-  .set.done{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .ex-title h4{margin:0;font-size:16px;font-weight:700;flex:1;line-height:1.45}
+  .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--accent);
+       border:1px solid var(--accent);padding:2px 6px;white-space:nowrap;align-self:center}
+  .rx{font-family:var(--mono);font-size:13px;color:var(--accent);margin:6px 0 0 22px}
+  .mus{font-size:12.5px;color:var(--muted);margin:5px 0 0 22px;line-height:1.5}
+  .mus b{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--accent);margin-right:7px}
+  .sets{display:flex;gap:8px;align-items:center;margin:13px 0 0 22px;flex-wrap:wrap}
+  .sets small{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--muted)}
+  .set{width:38px;height:34px;border:1.5px solid var(--accent);background:none;cursor:pointer;
+       font-family:var(--mono);font-size:13px;color:var(--accent);padding:0}
+  .set.done{background:var(--accent);color:#fff}
 
   details{border-top:1px solid var(--line)}
-  summary{
-    list-style:none;cursor:pointer;padding:11px 16px;font-size:13px;color:var(--muted);
-    font-family:var(--mono);letter-spacing:.1em;display:flex;justify-content:space-between;
-  }
+  summary{list-style:none;cursor:pointer;padding:10px 16px;font-size:12.5px;color:var(--muted);
+          font-family:var(--mono);letter-spacing:.1em;display:flex;justify-content:space-between}
   summary::-webkit-details-marker{display:none}
   summary::after{content:"+";font-size:15px}
   details[open] summary::after{content:"–"}
-  .body{padding:2px 16px 16px}
-  .body ul{margin:0 0 12px;padding-left:18px}
+  .body{padding:2px 16px 15px}
+  .body ul{margin:0;padding-left:18px}
   .body li{font-size:14.5px;color:var(--ink-2);margin-bottom:7px}
   .body li b{color:var(--ink)}
+  .fig{background:#fff;border:1px solid var(--line);padding:10px 8px;margin:0 0 13px}
+  .fig svg{width:100%;height:auto;display:block}
+  .prog{margin-top:13px;padding-top:12px;border-top:1px dashed var(--line)}
+  .prog b{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--accent);display:block;margin-bottom:6px}
+  .prog ol{margin:0;padding-left:20px}
+  .prog li{font-size:14px;color:var(--ink-2);margin-bottom:5px}
+  .prog li b{display:inline;font-family:var(--cjk);font-size:14px;letter-spacing:0;color:var(--ink);margin:0}
   .flag{border-left:2px solid var(--flag);padding:2px 0 2px 12px;margin-top:12px}
   .flag p{margin:0;font-size:14px;color:var(--ink-2)}
   .flag p b{color:var(--flag);font-family:var(--mono);font-size:11px;letter-spacing:.14em;display:block;margin-bottom:3px}
 
-  /* ---------- rules ---------- */
-  .rules{background:var(--ink);color:#E6ECE7;padding:24px 20px;margin-top:38px}
-  .rules h2{font-size:15px;margin:0 0 16px;letter-spacing:.04em;color:#fff}
-  .rules ol{margin:0;padding-left:20px}
-  .rules li{font-size:14.5px;margin-bottom:11px;color:#C3CFC7}
-  .rules li b{color:#fff}
-  .rules .tail{margin:18px 0 0;font-size:13px;color:#94A69B;border-top:1px solid #2E3A34;padding-top:14px}
+  .card{background:var(--paper);border:1px solid var(--line);padding:18px;margin-bottom:12px}
+  .card ul{margin:0;padding-left:18px}
+  .card li{font-size:14.5px;color:var(--ink-2);margin-bottom:8px}
+  .card li:last-child{margin-bottom:0}
+  .card li b{color:var(--ink)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{text-align:left;padding:9px 8px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--muted);font-weight:400}
+  td{color:var(--ink-2)}
+  td b{color:var(--ink)}
+  .week{display:flex;gap:5px;flex-wrap:wrap}
+  .week div{flex:1;min-width:40px;border:1px solid var(--line);padding:8px 4px;text-align:center;
+            font-size:12px;color:var(--ink-2);background:#fff}
+  .week div b{display:block;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;margin-bottom:3px}
+  .week div.tr{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:700}
 
-  footer{margin-top:34px;padding:20px 0 10px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+  .dark{background:var(--ink);color:#C3CFC7;padding:22px 20px;margin-top:14px}
+  .dark h3{color:#fff;margin:0 0 12px;font-size:15px}
+  .dark ul{margin:0;padding-left:18px}
+  .dark li{color:#C3CFC7;font-size:14.5px;margin-bottom:9px}
+  .dark li:last-child{margin-bottom:0}
+  .dark li b{color:#fff}
 
-  /* ---------- rest timer ---------- */
-  .rest{
-    position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;
-    transform:translateY(102%);transition:transform .28s ease;z-index:20;
-  }
+  footer{margin-top:30px;padding:18px 0 10px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+  footer p{margin:0 0 6px}
+
+  .rest{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;
+        transform:translateY(102%);transition:transform .28s ease;z-index:20}
   .rest.up{transform:translateY(0)}
   .rest-bar{height:4px;background:#2E3A34;position:relative}
   .rest-bar i{position:absolute;inset:0 auto 0 0;background:#4FBFA8;width:100%}
-  .rest-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px 22px;max-width:640px;margin:0 auto}
-  .rest-in .t{font-family:var(--mono);font-size:34px;font-weight:600;line-height:1;letter-spacing:-.02em}
+  .rest-in{display:flex;align-items:center;justify-content:space-between;gap:16px;
+           padding:16px 20px 22px;max-width:640px;margin:0 auto}
+  .rest-in .t{font-family:var(--mono);font-size:34px;font-weight:600;line-height:1}
   .rest-in .cue{font-size:13px;color:#9FB3A9;margin:5px 0 0}
-  .rest-in button{
-    background:none;border:1px solid #4A5A52;color:#DCE6E0;font-family:var(--cjk);
-    font-size:13.5px;padding:9px 16px;cursor:pointer;white-space:nowrap;
-  }
+  .rest-in button{background:none;border:1px solid #4A5A52;color:#DCE6E0;font-family:var(--cjk);
+                  font-size:13.5px;padding:9px 16px;cursor:pointer}
 
-  @media (prefers-reduced-motion:reduce){
-    *{transition:none !important}
-  }
+  @media (prefers-reduced-motion:reduce){*{transition:none !important}}
 
-  /* ---------- print ---------- */
   @media print{
-    body{background:#fff;padding-bottom:0;font-size:11.5pt;line-height:1.6}
+    body{background:#fff;padding-bottom:0;font-size:11pt;line-height:1.55}
     .wrap{max-width:none;padding:0}
-    .rest,.progress,.breath-top button,.breath-bar,.breath-label{display:none !important}
-    .ex,.breath{border:1px solid #BBB;break-inside:avoid;page-break-inside:avoid;background:#fff}
+    .rest,.progress,.tabs,.breath{display:none !important}
+    .ex,.card{border:1px solid #BBB;break-inside:avoid;background:#fff}
+    .pane[hidden]{display:block !important}
     details{display:block !important}
     details > .body{display:block !important}
     summary{display:none !important}
-    .body{padding-top:12px;border-top:1px solid #DDD;margin-top:0}
-    .set{border-color:#999;color:#fff}
-    .rules{background:#fff;color:#000;border:2px solid #000;break-inside:avoid}
-    .rules h2,.rules li b{color:#000}
-    .rules li,.rules .tail{color:#222}
-    .rules .tail{border-top-color:#BBB}
-    section{break-inside:auto}
-    header{padding-top:0}
-    @page{margin:14mm 13mm}
+    .body{padding-top:11px;border-top:1px solid #DDD}
+    .dark{background:#fff;color:#000;border:2px solid #000;break-inside:avoid}
+    .dark h3,.dark li b{color:#000}
+    .dark li{color:#222}
+    .week div.tr{background:#eee;color:#000}
+    .dayhead{break-before:page}
+    @page{margin:13mm 12mm}
   }
 </style>
 </head>
 <body>
 <div class="wrap">
-
   <header>
-    <p class="eyebrow">Heimtraining · Ohne Geräte</p>
-    <h1>自重训练计划<br>下肢主项 + 核心修复</h1>
-    <p class="sub">肩膀康复期版本 — 全部动作不压肩、不撑地</p>
-    <div class="meta">
-      <div>每周<b>3–4 次</b></div>
-      <div>单次<b>30–35 分</b></div>
-      <div>动作<b>13 个</b></div>
-      <div>总组数<b>39 组</b></div>
-    </div>
-    <div class="progress">
-      <div class="track"><i id="pbar"></i></div>
-      <div class="pct" id="ppct">0 / 27</div>
+    <p class="eyebrow">Trainingsplan · Phase 1</p>
+    <h1>腰腹 · 臀腿 · 体态</h1>
+    <p class="sub">肩膀康复期版本 — 上肢待理疗师放行后加入</p>
+    <div class="tabs">
+      <button data-p="a" class="on">A 天 · 髋</button>
+      <button data-p="b">B 天 · 膝</button>
+      <button data-p="d">每天 · 盆底</button>
+      <button data-p="i">说明</button>
     </div>
   </header>
 
-  <section>
-    <div class="sec-head"><h2>下肢</h2><span>MAIN · 先做</span></div>
-    <p class="sec-note">这部分是消耗和保肌的主力，不是配菜。组间休息 60–90 秒。</p>
-    <div id="lower"></div>
-  </section>
+  <div id="pane-a" class="pane"></div>
+  <div id="pane-b" class="pane" hidden></div>
+  <div id="pane-d" class="pane" hidden></div>
 
-  <section>
-    <div class="sec-head"><h2>核心</h2><span>CORE · 顺序有意义</span></div>
-    <p class="sec-note">第 1 个动作是后面所有动作的基础，别跳过。组间休息 30–45 秒。</p>
+  <div id="pane-i" class="pane" hidden>
+    <div class="dayhead"><h2>频率 · 目标 · 预期</h2><p>八周为一个周期，中途不调整。</p></div>
 
-    <div class="breath">
-      <div class="breath-top">
-        <p><b>呼吸节奏器</b><br>吸气 4 秒 · 呼气收下腹 6 秒</p>
-        <button class="ghost" id="bBtn">开始</button>
+    <div class="block">
+      <div class="block-head"><h3>一周怎么排</h3><span>FREQUENCY</span></div>
+      <p class="block-note">A / B 交替，隔天练。下一周自然变成 B–A–B，不用特意安排。</p>
+      <div class="week">
+        <div class="tr"><b>MON</b>A 天</div>
+        <div><b>TUE</b>走路</div>
+        <div class="tr"><b>WED</b>B 天</div>
+        <div><b>THU</b>走路</div>
+        <div class="tr"><b>FRI</b>A 天</div>
+        <div><b>SAT</b>普拉提</div>
+        <div><b>SUN</b>休息</div>
       </div>
-      <div class="breath-bar" id="bBar"><i></i></div>
-      <div class="breath-label" id="bLab">待机</div>
-      <div class="breath-foot">
-        <div class="breath-count idle" id="bCnt">—</div>
-        <div class="snd">
-          <button id="sTone" class="on">提示音</button>
-          <button id="sTick">秒拍</button>
-        </div>
+      <div class="card" style="margin-top:14px">
+        <ul>
+          <li><b>力量训练每周 3 次</b>，每次 35–40 分钟</li>
+          <li><b>盆底 4 个动作每天做</b>，5 分钟，跟训练一起或单独都行</li>
+          <li><b>每天 8000 步</b>，饭后走 15 分钟最省事</li>
+          <li>周末普拉提是可选项，不想去就走路</li>
+          <li><b>不减重。</b>吃到维持量，蛋白质 85–90 克/天，按周平均看，某天吃少了不用补</li>
+        </ul>
       </div>
     </div>
 
-    <div id="core"></div>
-  </section>
+    <div class="block">
+      <div class="block-head"><h3>练什么 · 什么时候看到</h3><span>OUTCOMES</span></div>
+      <p class="block-note">按优先级排。第一项是你的主要诉求，也是这个计划的重心。</p>
+      <table>
+        <tr><th>目标</th><th>时间</th><th>能达到什么</th></tr>
+        <tr><td><b>腹横肌张力</b></td><td>6–8 周</td><td><b>主要目标。</b>放松状态下的下腹形态改善，不需要主动收着</td></tr>
+        <tr><td><b>臀部形状</b></td><td>8–12 周</td><td>臀肌对负荷反应明确。现在走单腿路线，有器械后更快</td></tr>
+        <tr><td><b>体态 · 对齐</b></td><td>4–6 周</td><td>不靠收腹也能挺直，下腹前顶减轻</td></tr>
+        <tr><td><b>腿部力量</b></td><td>4 周起</td><td>动作变轻、能加重量 — 这是所有变化的引擎</td></tr>
+        <tr><td><b>盆底功能</b></td><td>维持</td><td>跑 6 公里无症状，目标是保持现状</td></tr>
+        <tr><td><b>腰围</b></td><td>不追求</td><td>78 已在健康范围。变小是张力恢复的副产品，不是目标</td></tr>
+        <tr><td><b>腹直肌轮廓</b></td><td>3–6 个月+</td><td>可以练厚，但清晰可见受体脂限制，这个阶段不追求</td></tr>
+        <tr><td><b>上肢 · 手臂</b></td><td>待放行</td><td>肩膀恢复后单独排。三头肌变厚可改善线条，脂肪厚度减不掉</td></tr>
+      </table>
+    </div>
 
-  <section>
-    <div class="sec-head"><h2>盆底</h2><span>PELVIC · 维持</span></div>
-    <p class="sec-note">你跑 6 公里无症状，说明盆底肌在动态负荷下能工作 — 这一组是维持和整合，不是康复。可以跟训练一起做，也可以单独每天做，5 分钟。组间休息 30 秒。</p>
-    <div id="pelvic"></div>
-  </section>
+    <div class="block">
+      <div class="block-head"><h3>怎么进步</h3><span>PROGRESSION</span></div>
+      <p class="block-note">这是整个计划最重要的一条。不加负荷，练一年也是原样。</p>
+      <div class="card">
+        <ul>
+          <li><b>做满次数、最后一组还算轻松 → 下次加。</b>顺序：加重量 → 放慢下落 → 加顶点停顿 → 加次数或组数 → 改单腿</li>
+          <li><b>一次只加一项。</b>同时加两项，出问题时不知道是哪一项</li>
+          <li><b>臀推优先加重量</b>，这个动作能承受的负荷比你想的大很多</li>
+          <li>哑铃档位跳太大，就先加组数或放慢离心，效果一样</li>
+        </ul>
+      </div>
+      <div class="dark">
+        <h3>三条贯穿所有动作的原则</h3>
+        <ul>
+          <li><b>每组开始前先呼气收下腹</b>，再开始动。用三成力，不是死命绷紧</li>
+          <li><b>全程正常呼吸。</b>任何动作憋气都是错的</li>
+          <li><b>慢 &gt; 多。</b>代偿着做完没有意义，宁可少做几次做标准</li>
+        </ul>
+      </div>
+    </div>
 
-  <div class="rules">
-    <h2>三条贯穿所有动作的原则</h2>
-    <ol>
-      <li><b>每组开始前先呼气收下腹</b>，再开始动。吸一口气 → 呼气时下腹轻轻往内收（拉拉链）→ 保持这个状态开始动作。用三成力，不是死命绷紧。</li>
-      <li><b>全程正常呼吸。</b>任何动作憋气都是错的。</li>
-      <li><b>慢 &gt; 多。</b>代偿着做完 15 次没有意义，宁可少做几次做标准。</li>
-    </ol>
-    <p class="tail">加难度的顺序：做满次数且最后一组还轻松 → 放慢下落 → 加顶点停顿 → 加次数或组数 → 改单腿 / 加大幅度。<b style="color:#fff">一次只加一项。</b></p>
+    <div class="block">
+      <div class="block-head"><h3>八周内不做的事</h3><span>DON'T</span></div>
+      <p class="block-note">这几条和练什么同样重要。</p>
+      <div class="card">
+        <ul>
+          <li><b>不称体重、不天天量腰围。</b>腰围只在第 4 周和第 8 周测：早上空腹、肚子放松、肚脐水平、呼气末</li>
+          <li><b>不做热量缺口。</b>BMI 20 往下减，掉的主要是肌肉，松弛感反而更明显</li>
+          <li><b>不加有氧来消耗。</b>走路够了，多余的有氧挤占恢复</li>
+          <li><b>不做手撑地的动作</b>（平板、俯卧撑、鸟狗）和一切上肢负重，等理疗师放行</li>
+          <li><b>不全天收腹。</b>需要挺直时用对齐，不用腹肌 — 这条对下腹形态的影响不比训练小</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-head"><h3>值得买的装备</h3><span>EQUIPMENT</span></div>
+      <p class="block-note">按性价比排。都不需要肩膀参与，现在就能用。</p>
+      <div class="card">
+        <ul>
+          <li><b>Mini-Band 弹力圈</b>（十几欧）— 侧向走和蚌式需要。长弹力带打结也能临时替代</li>
+          <li><b>12 公斤壶铃</b>（20–30 欧）— 这个阶段最值的一件。臀推、深蹲、硬拉全能用，2 公斤哑铃对臀部等于没加</li>
+          <li><b>脚踝沙袋 0.5–1 公斤</b>（十几欧）— 死虫式和侧卧动作的 3 级进阶要用</li>
+          <li>可调哑铃更灵活但贵，不急</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-head"><h3>肩膀放行之后</h3><span>PHASE 2</span></div>
+      <p class="block-note">下次理疗时问清楚：什么时候能开始上肢负重，从多少重量开始。</p>
+      <div class="card">
+        <ul>
+          <li>计划改成<b>上肢 / 下肢分化</b>，每周 3–4 次</li>
+          <li>加回来：划船、肩推、地板卧推、农夫行走、平板支撑</li>
+          <li>手臂线条：三头肌臂屈伸、下压、法式推举，每周 2 次</li>
+          <li>背练起来之后肩会自然打开，腰的视觉比例也会变小</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      <p><b>时间不够时</b>：砍动作，不砍组数。20 分钟就做当天前三个动作各三组。</p>
+      <p>任何动作出现中线顶起一条脊（coning），退回上一级，两周后再试。</p>
+    </footer>
   </div>
-
-  <footer>
-    <p style="margin:0 0 6px"><b>时间不够时</b>：砍动作，不砍组数。只有 20 分钟就做深蹲、单腿臀桥、死虫式、蚌式各三组，比九个动作各做一组有用。</p>
-    <p style="margin:0">肩膀恢复、理疗师放行后，再把哑铃版本加回来。</p>
-  </footer>
 </div>
 
 <div class="rest" id="rest">
   <div class="rest-bar"><i id="rfill"></i></div>
   <div class="rest-in">
-    <div>
-      <div class="t" id="rnum">90</div>
-      <p class="cue">休息 — 下一组开始前先呼气收下腹</p>
-    </div>
+    <div><div class="t" id="rnum">90</div><p class="cue">休息 — 下一组开始前先呼气收下腹</p></div>
     <button id="rskip">跳过</button>
   </div>
 </div>
 
 <script>
-const LOWER = [
-  {n:"自重深蹲", tag:"兼练盆底", rx:"15 次 × 3 组", pts:[
-    "双脚略宽于肩，脚尖外展 15–30°，<b>膝盖始终顺着脚尖方向</b>",
-    "蹲到大腿接近平行或更低，前提是腰不塌",
-    "起身用臀腿推地，不是用腰把上半身甩起来",
-    "下蹲吸气，起身呼气 + 收下腹"
-  ], bad:"膝盖内扣、重心全压前脚掌、起身时屁股先抬。太轻松了就把下蹲放慢到 3 秒，或底部停 2 秒。"},
+/* ============ 动作库 ============ */
+const EX = {
+ wall:{n:"靠墙站立对齐", tag:"热身", mus:"深层背伸肌 · 颈深屈肌 — 主要练对齐的感觉，不是练肌肉", rx:"60 秒 × 1 组", rest:0, pts:[
+   "后脑、上背、屁股贴墙，脚跟离墙约 5–10 厘米",
+   "<b>腰和墙之间留一个手掌的厚度</b> — 不是把腰压平",
+   "想象头顶有根线往上提，肋骨落在骨盆正上方",
+   "<b>肚子完全放松</b>，正常呼吸",
+   "结束后带着这个感觉离开墙面走两步"],
+   bad:"下巴往前伸去够墙、把腰硬压平、憋气挺胸。这是找感觉，不是较劲。"},
 
-  {n:"分腿蹲", rx:"每侧 10 次 × 3 组", pts:[
-    "前后脚拉开约一条腿的距离，后脚跟离地",
-    "<b>垂直上下</b>，不是往前顶；后膝接近地面但不撞",
-    "躯干直立或微前倾，不能弓腰",
-    "前腿承重 70–80%，发力感在前侧臀腿",
-    "手只轻扶墙保持平衡，别把体重压上去"
-  ], bad:"步子太小会让膝盖过度前移，先把前后距离拉够再练。"},
+ thrust:{n:"臀推", tag:"臀主项", mus:"臀大肌（主）· 腘绳肌", rx:"12 次 × 4 组", rest:90,
+   prog:["<b>1 级</b>：双腿自重臀推，顶点停 1 秒",
+         "<b>2 级</b>：<b>单腿臀推</b>（负荷约为双腿的两倍多 — 2 公斤哑铃远不如这一步）",
+         "<b>3 级</b>：单腿 + 顶点停 3 秒",
+         "<b>4 级</b>：等买了壶铃或可调哑铃，回到双腿加负重"], pts:[
+   "上背靠沙发或床沿。有负重就横放髋部，<b>垫条毛巾</b>",
+   "脚跟发力顶起，顶点髋膝肩成一条线，<b>挤臀停 1 秒</b>",
+   "下巴微收、眼睛看前方，别仰头",
+   "顶起来时想着把肋骨往下收，别外翻",
+   "<b>你现在的 2 公斤太轻</b>，直接走单腿路线，别在双腿上磨时间"],
+   bad:"顶太高变成用腰折、下巴仰起来、没停顿就往下掉。腰酸就是顶过了。"},
 
-  {n:"单腿臀桥", tag:"兼练盆底", rx:"每侧 10 次 × 3 组", pts:[
-    "仰卧屈膝，一条腿抬起，支撑脚<b>脚跟</b>发力顶起",
-    "顶点髋膝肩成一条线，停 1–2 秒主动挤臀",
-    "<b>骨盆不能左右倾斜</b> — 这是这个动作最关键的地方"
-  ], bad:"顶太高会用腰代偿。腰酸就是顶过了，降低高度。"},
+ srdl:{n:"单腿罗马尼亚硬拉", mus:"腘绳肌 · 臀大肌 · 髋部稳定肌", rx:"每侧 10 次 × 3 组", rest:75, pts:[
+   "<b>先徒手练平衡</b>，稳了再拿哑铃（提在身侧，不过头）",
+   "支撑腿微屈，髋往后推，身体像跷跷板一样前倾",
+   "背始终是直的，发力感在支撑腿的<b>腿后侧和臀</b>",
+   "髋部保持水平，不要往一侧翻开",
+   "手扶墙或椅背保持平衡完全可以"],
+   bad:"弓背去够地面、支撑腿完全锁死、下得太低。降到膝盖高度就够了。"},
 
-  {n:"靠墙静蹲", rx:"30–45 秒 × 3 组", pts:[
-    "背贴墙，脚往前走到大腿接近平行，膝盖在脚踝正上方",
-    "<b>腰贴紧墙不留空隙</b> — 这一条让它同时练到核心",
-    "重量在脚跟，全程正常呼吸别憋气"
-  ], bad:"越撑越往下滑就是撑不住了，提前结束这组，别硬耗。"}
-];
+ band:{n:"弹力圈侧向走", mus:"臀中肌 · 臀小肌", rx:"每侧 15 步 × 3 组", rest:60, pts:[
+   "Mini-Band 套在<b>膝盖上方</b>（新手）或脚踝（进阶）",
+   "微微屈膝下蹲，保持这个高度横向走",
+   "步幅小而稳，<b>全程带着张力</b>，别让带子松掉",
+   "上身直立，不要左右晃"],
+   bad:"站太直、走太快、上身摇摆。感觉不在屁股侧上方就是姿势不对。"},
 
-const CORE = [
-  {n:"仰卧呼吸 + 收下腹", tag:"兼练盆底", rx:"10 次 × 3 组", pts:[
-    "屈膝仰卧，一手放胸口，一手放下腹",
-    "吸气时肋骨往两侧扩，<b>胸口不鼓</b>",
-    "呼气时慢慢把下腹往内收，保持 3–5 秒"
-  ], bad:"肩颈和臀部完全不参与。发现自己在夹屁股或憋气，就是用力过头了。"},
+ clam:{n:"侧卧蚌式", tag:"兼练盆底", mus:"臀中肌 · 髋外旋肌", rx:"每侧 15 次 × 3 组", rest:45, pts:[
+   "侧卧屈膝约 90°，两脚跟并拢，上侧膝盖打开、<b>脚跟不分开</b>",
+   "骨盆不能往后倒 — 背后靠墙就能检查",
+   "发力感在屁股侧上方（臀中肌），不是大腿前侧",
+   "顶点停 1 秒。有弹力圈就套在膝盖上方"],
+   bad:"骨盆一往后翻就变成大腿在动，练不到目标肌。"},
 
-  {n:"死虫式（只动腿）", tag:"兼练盆底", rx:"每侧 10 次 × 3 组", pts:[
-    "仰卧，双腿抬成髋 90°/膝 90°，双手放骨盆两侧",
-    "呼气收下腹，一条腿缓慢下放，脚跟接近地面再收回，一下 3–4 秒",
-    "<b>腰全程贴地</b> — 手掌垫在腰下，压力一消失就是幅度超了"
-  ], bad:"放太快、放太低、憋气 — 三个最常见的问题。"},
+ bulg:{n:"保加利亚分腿蹲", mus:"臀大肌 · 股四头肌", rx:"每侧 10 次 × 3 组", rest:90, pts:[
+   "后脚搭在沙发或椅子上，前后距离约一条腿",
+   "<b>垂直上下</b>，不是往前顶；躯干直立或微前倾",
+   "前腿承重 70–80%，发力感在前侧臀腿",
+   "手轻扶墙保持平衡，别把体重压上去"],
+   bad:"步子太小会让膝盖过度前移。先把前后距离拉够再练。"},
 
-  {n:"仰卧交替脚跟点地", rx:"每侧 12 次 × 3 组", pts:[
-    "同死虫式姿势，幅度更小，脚跟轻点地面就收回",
-    "死虫式腰会离地的话，先只做这个，练两周再进阶"
-  ], bad:"这是降级动作，不是补充动作。能标准做死虫式就可以省掉它。"},
+ squat:{n:"自重深蹲（慢速）", mus:"股四头肌 · 臀大肌", rx:"15 次 × 3 组", rest:75, pts:[
+   "双脚略宽于肩，脚尖外展 15–30°，<b>膝盖顺着脚尖方向</b>",
+   "<b>下落 3 秒</b>，蹲到大腿接近平行，起身正常速度",
+   "起身用臀腿推地，不是用腰把上半身甩起来",
+   "下蹲吸气，起身呼气 + 收下腹"],
+   bad:"膝盖内扣、重心全压前脚掌、起身时屁股先抬。太轻松就底部停 2 秒。"},
 
-  {n:"侧卧蚌式", rx:"每侧 15 次 × 3 组", pts:[
-    "侧卧屈膝约 90°，两脚跟并拢，上侧膝盖打开、<b>脚跟不分开</b>",
-    "骨盆不能往后倒 — 背后靠墙就能检查",
-    "发力感在屁股侧上方（臀中肌），不是大腿前侧",
-    "顶点停 1 秒"
-  ], bad:"骨盆一往后翻就变成大腿在动，练不到目标肌。"},
+ glute1:{n:"单腿臀桥", tag:"兼练盆底", mus:"臀大肌 · 腘绳肌 · 核心抗旋转", rx:"每侧 12 次 × 3 组", rest:60, pts:[
+   "仰卧屈膝，一条腿抬起，支撑脚<b>脚跟</b>发力顶起",
+   "顶点髋膝肩成一条线，停 1–2 秒主动挤臀",
+   "<b>骨盆不能左右倾斜</b> — 这是这个动作最关键的地方"],
+   bad:"顶太高会用腰代偿。腰酸就是顶过了，降低高度。"},
 
-  {n:"侧卧直腿抬", rx:"每侧 12 次 × 3 组", pts:[
-    "身体成一条直线，下面那条腿微屈稳定",
-    "上腿伸直，<b>脚尖朝前</b>，抬到 30–45° 就够",
-    "放下时要慢，离心才是重点"
-  ], bad:"脚尖朝天会变成练大腿前侧，白做。"}
-];
+ wallsit:{n:"靠墙静蹲", mus:"股四头肌（等长收缩）", rx:"45 秒 × 3 组", rest:60, pts:[
+   "背贴墙，脚往前走到大腿接近平行，膝盖在脚踝正上方",
+   "<b>腰贴紧墙不留空隙</b> — 这一条让它同时练到核心",
+   "重量在脚跟，全程正常呼吸别憋气"],
+   bad:"越撑越往下滑就是撑不住了，提前结束这组，别硬耗。"},
 
-const PELVIC = [
-  {n:"呼吸同步激活", rx:"10 次 × 3 组", pts:[
-    "仰卧屈膝或坐直，呼气收下腹的<b>同时</b>轻轻上提盆底（像忍住排气的感觉）",
-    "提起来保持 3–5 秒，<b>然后完全放松 5 秒</b>",
-    "放松的时间不能比收紧短 — 这是最容易被省掉的一半"
-  ], bad:"夹屁股、夹大腿、憋气 = 用错肌肉了。手放在臀部上，如果摸到臀肌在动就重来。"},
+ breath:{n:"仰卧呼吸 + 收下腹", tag:"兼练盆底", mus:"腹横肌 · 膈肌 · 盆底肌 — 这三块是一个整体", rx:"10 次 × 3 组", rest:40, pts:[
+   "屈膝仰卧，一手放胸口，一手放下腹",
+   "吸气时肋骨往两侧扩，<b>胸口不鼓</b>",
+   "呼气时慢慢把下腹往内收，保持 3–5 秒",
+   "跟着上面的呼吸节奏器做最省心"],
+   bad:"肩颈和臀部完全不参与。发现自己在夹屁股或憋气，就是用力过头了。"},
 
-  {n:"快速收放", rx:"10 次 × 3 组", pts:[
-    "快速提起、立刻放松，大约 1 秒一次",
-    "练的是反射性收缩 — 咳嗽、打喷嚏、跑步落地那一瞬间用的就是这个",
-    "每组之间休息够，别连着做"
-  ], bad:"越做越提不上来就是疲劳了，直接停。疲劳状态下继续练是在练代偿。"},
+ deadbug:{n:"死虫式", tag:"兼练盆底", mus:"腹横肌 · 腹直肌（抗伸展）", rx:"每侧 10 次 × 3 组", rest:45,
+   prog:["<b>1 级</b>：只动腿，脚跟下放到接近地面（现在从这里开始）",
+         "<b>2 级</b>：下放的那条腿<b>完全伸直</b>，幅度更大",
+         "<b>3 级</b>：脚踝加 0.5–1 公斤沙袋，或用那对 2 公斤哑铃夹在脚上",
+         "升级标准：腰能全程贴地、不憋气、最后一组还稳"], pts:[
+   "仰卧，双腿抬成髋 90°/膝 90°，双手放骨盆两侧",
+   "呼气收下腹，一条腿缓慢下放，脚跟接近地面再收回，一下 3–4 秒",
+   "<b>腰全程贴地</b> — 手掌垫在腰下，压力一消失就是幅度超了"],
+   bad:"放太快、放太低、憋气 — 三个最常见的问题。"},
 
-  {n:"长时保持", rx:"8 次 × 3 组", pts:[
-    "提起来保持 8–10 秒，<b>全程正常呼吸</b>，然后放松 10 秒",
-    "这是耐力，对应长时间站着、抱孩子的场景"
-  ], bad:"憋气，或中途已经松掉了自己没发现。保持不住 8 秒就先做 5 秒，慢慢加。"},
+ heel:{n:"仰卧交替脚跟点地", mus:"腹横肌（低强度版）", rx:"每侧 12 次 × 3 组", rest:40,
+   prog:["<b>1 级</b>：脚跟轻点地面就收回",
+         "<b>2 级</b>：点地后停 2 秒再收回",
+         "<b>3 级</b>：换成单腿直腿下放（见下一个动作）"], pts:[
+   "同死虫式姿势，幅度更小，脚跟轻点地面就收回",
+   "腰一旦离地就是幅度超了，缩小范围"],
+   bad:"做太快、用大腿甩。这个动作慢比多重要。"},
 
-  {n:"主动放松", rx:"60 秒 × 3 组", pts:[
-    "深蹲位（脚跟着地、屁股沉下去）或跪坐前趴，缓慢深呼吸",
-    "吸气时想象盆底往下、往外扩开",
-    "<b>这是正式训练，不是休息。</b>盆底肌练过头会变成高张力状态 — 症状是尿频、下腹坠胀、性交痛，反而更麻烦"
-  ], bad:"跳过这个动作。收紧和放松的能力同样重要，只练收紧是常见的过度训练路径。"}
-];
+ legdrop:{n:"仰卧单腿直腿下放", tag:"进阶", mus:"腹横肌 · 腹直肌下段（抗伸展）", rx:"每侧 8 次 × 3 组", rest:45,
+   prog:["<b>1 级</b>：只下放到 45°",
+         "<b>2 级</b>：下放到脚跟接近地面",
+         "<b>3 级</b>：下放 4 秒 + 底部停 2 秒"], pts:[
+   "仰卧，双腿伸直朝上，一条腿缓慢下放，另一条不动",
+   "<b>腰全程贴地</b> — 这是唯一的判断标准，压力一消失立刻停",
+   "呼气时下放，下放 3–4 秒",
+   "腿越直越难，做不到就先微屈膝"],
+   bad:"腰拱起来还继续放、靠惯性甩腿。宁可只放到一半。"},
 
-let done = 0;
-const TOTAL = 39;
+ sidedouble:{n:"侧卧双腿抬", tag:"侧向", mus:"腹斜肌 · 腰方肌（抗侧屈）", rx:"每侧 8 次 × 3 组", rest:45,
+   prog:["<b>1 级</b>：双腿并拢抬离地面几厘米，停 2 秒",
+         "<b>2 级</b>：抬起后保持 5 秒",
+         "<b>3 级</b>：抬起后上面那条腿再往上打开 10 次"], pts:[
+   "侧卧，身体成一条直线，双腿并拢伸直",
+   "<b>两条腿一起</b>抬离地面，腰侧发力把腿撑起来",
+   "下面那侧的腰不要塌到地上",
+   "头可以枕在下面手臂上（不撑地、不压肩）"],
+   bad:"用手推地借力、身体往前后倒。抬不高没关系，离地就有效。"},
 
-function render(list, mount, offset, rest){
-  const el = document.getElementById(mount);
-  el.innerHTML = list.map((e,i)=>`
-    <div class="ex">
-      <div class="ex-main">
-        <div class="ex-title"><span class="num">${String(offset+i+1).padStart(2,"0")}</span><h3>${e.n}</h3>${e.tag?`<span class="tag">${e.tag}</span>`:""}</div>
-        <div class="rx">${e.rx}</div>
-        <div class="sets" data-rest="${rest}">
-          <small>组</small>
-          <button class="set">1</button><button class="set">2</button><button class="set">3</button>
-        </div>
+ sidelift:{n:"侧卧直腿抬", mus:"臀中肌", rx:"每侧 12 次 × 3 组", rest:45, pts:[
+   "身体成一条直线，下面那条腿微屈稳定",
+   "上腿伸直，<b>脚尖朝前</b>，抬到 30–45° 就够",
+   "放下时要慢，离心才是重点"],
+   bad:"脚尖朝天会变成练大腿前侧，白做。"},
+
+ ext:{n:"俯卧背部伸展", mus:"竖脊肌 · 臀大肌 · 中下斜方肌", rx:"10 次 × 3 组", rest:45, pts:[
+   "趴着，额头轻触地面或垫条毛巾，双手放身体两侧、掌心朝上（<b>肩膀不参与</b>）",
+   "呼气时把胸口抬离地面几厘米，顶点停 2 秒，慢慢放下",
+   "<b>眼睛始终看地面</b>，不抬头看前方",
+   "屁股放松，不用夹臀发力"],
+   bad:"抬太高变成用腰硬折、抬头看前方、憋气。幅度小而准比抬得高有用。"},
+
+ curl:{n:"卷腹", tag:"腹直肌", mus:"腹直肌上段 · 腹斜肌", rx:"15 次 × 3 组", rest:45,
+   prog:["<b>1 级</b>：双手放大腿上，卷起来时手滑到膝盖",
+         "<b>2 级</b>：双手轻放耳侧（不抱头、不用手拉）",
+         "<b>3 级</b>：顶点停 2 秒，或胸前抱个重物"], pts:[
+   "仰卧屈膝，呼气时把<b>肩胛骨卷离地面</b>，不用坐起来",
+   "下巴和胸口之间留一个拳头的距离，别用手把头拉起来",
+   "<b>腰全程贴地</b>，靠腹肌卷，不是靠腰起",
+   "顶点停 1 秒，下放要慢"],
+   bad:"用手拉脖子、下巴埋进胸口、靠惯性甩起来。做慢做少也比这个强。"},
+
+ revcurl:{n:"反向卷腹", tag:"下腹", mus:"腹直肌下段 · 腹横肌", rx:"12 次 × 3 组", rest:45,
+   prog:["<b>1 级</b>：双腿屈膝，把膝盖往胸口带，髋部离地一点点",
+         "<b>2 级</b>：下放时用 3 秒，控制住别掉下来",
+         "<b>3 级</b>：双腿伸直做，或脚踝加沙袋"], pts:[
+   "仰卧，双手放身体两侧，双腿屈膝抬起",
+   "<b>用下腹把骨盆往上卷</b>，尾骨离开地面 — 不是把腿甩向天花板",
+   "幅度很小，能感觉到下腹在收就对了",
+   "呼气时卷起，慢慢放回"],
+   bad:"靠腿的惯性甩、腰拱起来。这个动作最容易做成用髋屈肌，感觉在大腿根就是错的。"},
+
+ pf1:{n:"呼吸同步激活", mus:"盆底肌 + 腹横肌（协同激活）", rx:"10 次 × 3 组", rest:30, pts:[
+   "呼气收下腹的<b>同时</b>轻轻上提盆底（像忍住排气的感觉）",
+   "提起来保持 3–5 秒，<b>然后完全放松 5 秒</b>",
+   "放松的时间不能比收紧短"],
+   bad:"夹屁股、夹大腿、憋气 = 用错肌肉了。"},
+
+ pf2:{n:"快速收放", mus:"盆底肌快肌纤维（反射性收缩）", rx:"10 次 × 3 组", rest:30, pts:[
+   "快速提起、立刻放松，大约 1 秒一次",
+   "练的是反射性收缩 — 咳嗽、打喷嚏、跑步落地用的就是这个"],
+   bad:"越做越提不上来就是疲劳了，直接停。"},
+
+ pf3:{n:"长时保持", mus:"盆底肌慢肌纤维（耐力）", rx:"8 次 × 3 组", rest:30, pts:[
+   "提起来保持 8–10 秒，<b>全程正常呼吸</b>，然后放松 10 秒",
+   "对应长时间站着、抱孩子的场景"],
+   bad:"憋气，或中途已经松掉了自己没发现。保持不住 8 秒就先做 5 秒。"},
+
+ pf4:{n:"主动放松", mus:"盆底肌 — 练的是放松能力", rx:"60 秒 × 3 组", rest:30, pts:[
+   "深蹲位（脚跟着地）或跪坐前趴，缓慢深呼吸",
+   "吸气时想象盆底往下、往外扩开",
+   "<b>这是正式训练，不是休息。</b>只练收紧会变成高张力状态"],
+   bad:"跳过这个动作。收紧和放松的能力同样重要。"}
+};
+
+/* ============ 训练日 ============ */
+const DAYS = {
+ a:{title:"A 天 · 核心（前侧）+ 臀", sub:"核心排在最前面 — 精神最集中的时候练质量最高。约 35 分钟。",
+    blocks:[
+      {h:"热身", s:"WARM-UP", note:"60 秒，找到对齐的感觉再开始。", ex:["wall"]},
+      {h:"核心", s:"CORE · 主项 · 休息 40 秒", note:"这是你的主要诉求，所以排第一。前三个练中线张力（站着中间鼓的直接对策），卷腹练腹直肌上段。每个动作都有进阶路线，点开看。", ex:["breath","deadbug","legdrop","curl","ext"], breath:true},
+      {h:"臀腿", s:"GLUTES · 休息 60–90 秒", note:"2 公斤太轻，全部走单腿和慢速路线。", ex:["glute1","bulg","band"]}
+    ]},
+ b:{title:"B 天 · 核心（侧向）+ 臀", sub:"补上侧向和抗侧屈，两天合起来覆盖完整。约 35 分钟。",
+    blocks:[
+      {h:"热身", s:"WARM-UP", note:"和 A 天一样，60 秒。", ex:["wall"]},
+      {h:"核心", s:"CORE · 主项 · 休息 40 秒", note:"反向卷腹直接练下腹段，是你最在意的位置。侧向那两个决定腰的形状。", ex:["breath","heel","revcurl","sidelift","sidedouble"], breath:true},
+      {h:"臀腿", s:"GLUTES · 休息 60–90 秒", note:"臀推走单腿路线，蚌式有弹力带就套上。", ex:["thrust","srdl","clam"]}
+    ]},
+ d:{title:"每天 · 盆底", sub:"5 分钟。跟训练一起做，或单独任何时候做都行。",
+    blocks:[
+      {h:"盆底", s:"PELVIC · 休息 30 秒", note:"跑 6 公里无症状，这一组是维持不是康复。最后一个最容易被跳过，但最不该跳。", ex:["pf1","pf2","pf3","pf4"], breath:true}
+    ]}
+};
+
+/* ============ 示意图 ============ */
+const FIG = {"breath": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"34\" cy=\"96\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"46,96 118,96\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"118,96 150,66 168,106\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"70,96 78,82\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"104,96 110,82\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"44\" x2=\"122\" y2=\"60\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"152\" y=\"40\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">呼气时下腹内收</text></svg>", "deadbug": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"34\" cy=\"96\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"46,96 120,96\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 120,56 158,56\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 128,74 166,80\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"88\" x2=\"158\" y2=\"102\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"126\" y=\"46\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">膝盖保持 90°</text></svg>", "legdrop": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"34\" cy=\"96\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"46,96 120,96\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 124,40\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 170,72\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"176\" y1=\"76\" x2=\"186\" y2=\"100\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"128\" y=\"34\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">两腿都伸直</text></svg>", "heel": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"34\" cy=\"96\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"46,96 120,96\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 120,56 158,56\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 132,78 160,104\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"168\" y1=\"92\" x2=\"168\" y2=\"104\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"150\" y=\"118\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">脚跟轻点即收回</text></svg>", "sidelift": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"30\" cy=\"84\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"42,86 120,90\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,90 152,100 182,102\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,88 160,72 192,62\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M186,88 A34,34 0 0,1 196,62\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"126\" y=\"44\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">只有上面这条腿动</text></svg>", "sidedouble": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"30\" cy=\"82\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"42,84 118,88\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"118,88 160,80 196,74\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"118,92 160,84 196,78\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"180\" y1=\"96\" x2=\"188\" y2=\"78\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"120\" y=\"44\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">两条腿并拢一起抬</text><text x=\"120\" y=\"58\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">只需离地几厘米</text></svg>", "clam": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"30\" cy=\"84\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"42,86 112,90\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,90 150,98 150,104\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,88 150,72 152,100\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M154,92 A30,30 0 0,1 156,68\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"120\" y=\"44\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">膝盖打开</text><text x=\"120\" y=\"58\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">脚跟不分开</text></svg>", "ext": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"48\" cy=\"84\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"60,86 120,100 200,104\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"72,92 100,104\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"52\" y1=\"66\" x2=\"46\" y2=\"78\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"60\" y=\"58\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">胸口抬起几厘米</text><text x=\"120\" y=\"120\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">眼睛看地面</text></svg>", "glute1": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"30\" cy=\"100\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"42,100 112,72\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,72 140,100 162,104\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,72 172,56\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"104\" y1=\"44\" x2=\"112\" y2=\"62\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"106\" y=\"36\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">髋膝肩成一条线</text></svg>", "thrust": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><rect x=\"14\" y=\"52\" width=\"26\" height=\"56\" fill=\"none\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><text x=\"27.0\" y=\"84.0\" font-size=\"9\" fill=\"#7C877F\" text-anchor=\"middle\" font-family=\"sans-serif\">沙发</text><circle cx=\"30\" cy=\"46\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"40,62 116,62\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"116,62 146,100 170,104\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"116,62 128,46\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"100\" y1=\"34\" x2=\"106\" y2=\"52\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"104\" y=\"26\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">顶到水平，挤臀停 1 秒</text></svg>", "bulg": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><rect x=\"170\" y=\"74\" width=\"46\" height=\"34\" fill=\"none\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><text x=\"193.0\" y=\"95.0\" font-size=\"9\" fill=\"#7C877F\" text-anchor=\"middle\" font-family=\"sans-serif\">椅子</text><circle cx=\"74\" cy=\"24\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"74,34 78,68\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"78,68 66,90 60,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"78,68 130,82 172,74\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"44\" y1=\"52\" x2=\"44\" y2=\"76\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"20\" y=\"44\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">垂直下沉</text></svg>", "squat": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"96\" cy=\"26\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"96,36 108,66\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"108,66 78,84 86,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"108,66 138,84 130,108\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"160\" y1=\"48\" x2=\"160\" y2=\"78\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"140\" y=\"40\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">下落 3 秒</text></svg>", "srdl": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"58\" cy=\"44\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"68,48 116,62\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"116,62 120,86 118,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"116,62 162,56 196,52\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"96\" y1=\"30\" x2=\"74\" y2=\"40\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"100\" y=\"24\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">髋往后推，像跷跷板</text></svg>", "band": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"112\" cy=\"26\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"112,36 112,62\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,62 92,84 88,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,62 134,84 140,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><ellipse cx=\"113\" cy=\"84\" rx=\"26\" ry=\"7\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3\"/><line x1=\"150\" y1=\"96\" x2=\"190\" y2=\"96\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><line x1=\"76\" y1=\"96\" x2=\"36\" y2=\"96\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"112\" y=\"20\" font-size=\"10\" fill=\"#7C877F\" text-anchor=\"middle\" font-family=\"sans-serif\">保持半蹲高度</text></svg>", "wall": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><line x1=\"60\" y1=\"8\" x2=\"60\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"3\"/><circle cx=\"72\" cy=\"26\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"72,36 70,66 74,88 74,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M64,66 q-6,4 0,8\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.4\"/><line x1=\"96\" y1=\"22\" x2=\"80\" y2=\"16\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"100\" y=\"26\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">头顶往上提</text><text x=\"86\" y=\"74\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">腰后留一手掌厚</text></svg>", "wallsit": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><line x1=\"58\" y1=\"8\" x2=\"58\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"3\"/><circle cx=\"70\" cy=\"30\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"70,40 70,72\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"70,72 124,72 124,108\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><text x=\"88\" y=\"60\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">大腿接近水平</text><text x=\"130\" y=\"96\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">膝在踝正上方</text></svg>", "pf4": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"96\" cy=\"34\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"96,44 104,72\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"104,72 76,92 84,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"104,72 132,92 126,108\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"150\" y1=\"60\" x2=\"150\" y2=\"88\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"130\" y=\"52\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">吸气时盆底</text><text x=\"130\" y=\"64\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">往下往外扩</text></svg>", "curl": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"38\" cy=\"82\" r=\"9\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3\"/><polyline points=\"50,84 78,92 120,96\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"120,96 152,66 172,106\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"56,90 74,98\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><line x1=\"40\" y1=\"56\" x2=\"46\" y2=\"70\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"46\" y=\"48\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">肩胛离地即可</text><text x=\"120\" y=\"120\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">腰不离地</text></svg>", "revcurl": "<svg viewBox=\"0 0 230 124\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\"><defs><marker id=\"ah\" markerWidth=\"7\" markerHeight=\"7\" refX=\"5\" refY=\"3.5\" orient=\"auto\"><path d=\"M0,0 L7,3.5 L0,7 z\" fill=\"#0E6A5C\"/></marker></defs><line x1=\"8\" y1=\"108\" x2=\"222\" y2=\"108\" stroke=\"#D2D9CF\" stroke-width=\"2.5\"/><circle cx=\"34\" cy=\"96\" r=\"9\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3\"/><polyline points=\"46,96 112,96\" fill=\"none\" stroke=\"#161E1A\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><polyline points=\"112,92 126,62 152,70\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M140,92 A34,34 0 0,1 126,58\" fill=\"none\" stroke=\"#0E6A5C\" stroke-width=\"2.2\" stroke-dasharray=\"5 4\" marker-end=\"url(#ah)\"/><text x=\"126\" y=\"42\" font-size=\"10\" fill=\"#0E6A5C\" font-family=\"sans-serif\">用下腹把骨盆卷起来</text><text x=\"60\" y=\"118\" font-size=\"10\" fill=\"#7C877F\" font-family=\"sans-serif\">不是用腿甩</text></svg>"};
+
+/* ============ 渲染 ============ */
+const BREATH_HTML = `
+  <div class="breath">
+    <div class="breath-top">
+      <p><b>呼吸节奏器</b><br>吸气 4 秒 · 呼气收下腹 6 秒</p>
+      <button class="ghost bBtn">开始</button>
+    </div>
+    <div class="breath-bar bBar"><i></i></div>
+    <div class="breath-label bLab">待机</div>
+    <div class="breath-foot">
+      <div class="breath-count idle bCnt">—</div>
+      <div class="snd">
+        <button class="sTone on">提示音</button>
+        <button class="sTick">秒拍</button>
       </div>
-      <details>
-        <summary>动作要点</summary>
-        <div class="body">
-          <ul>${e.pts.map(p=>`<li>${p}</li>`).join("")}</ul>
-          <div class="flag"><p><b>常见错误</b>${e.bad}</p></div>
-        </div>
-      </details>
-    </div>`).join("");
-}
-render(LOWER,"lower",0,90);
-render(CORE,"core",4,40);
-render(PELVIC,"pelvic",9,30);
+    </div>
+  </div>`;
 
-/* ---- set tracking + rest timer ---- */
-const rest = document.getElementById("rest"),
-      rnum = document.getElementById("rnum"),
-      rfill= document.getElementById("rfill"),
-      pbar = document.getElementById("pbar"),
-      ppct = document.getElementById("ppct");
-let rtimer = null, restRunning = false;
+const setsOf = rx => parseInt((rx.match(/×\s*(\d+)/)||[0,1])[1],10);
 
-function updateProgress(){
-  pbar.style.width = (done/TOTAL*100)+"%";
-  ppct.textContent = done+" / "+TOTAL;
+function exHTML(key, idx){
+  const e = EX[key], n = setsOf(e.rx);
+  const dots = Array.from({length:n},(_,i)=>`<button class="set">${i+1}</button>`).join("");
+  return `<div class="ex">
+    <div class="ex-main">
+      <div class="ex-title"><span class="num">${String(idx).padStart(2,"0")}</span><h4>${e.n}</h4>${e.tag?`<span class="tag">${e.tag}</span>`:""}</div>
+      <div class="rx">${e.rx}</div>
+      ${e.mus?`<div class="mus"><b>练哪里</b>${e.mus}</div>`:""}
+      <div class="sets" data-rest="${e.rest}"><small>组</small>${dots}</div>
+    </div>
+    <details><summary>动作要点 · 示意图</summary><div class="body">
+      ${FIG[key]?`<div class="fig">${FIG[key]}</div>`:""}
+      <ul>${e.pts.map(p=>`<li>${p}</li>`).join("")}</ul>
+      ${e.prog?`<div class="prog"><b>进阶路线</b><ol>${e.prog.map(x=>`<li>${x}</li>`).join("")}</ol></div>`:""}
+      <div class="flag"><p><b>常见错误</b>${e.bad}</p></div>
+    </div></details></div>`;
 }
-function startRest(sec){
-  clearInterval(rtimer);
-  let left = sec;
-  restRunning = true; awake(true);
-  rest.classList.add("up");
-  rnum.textContent = left;
-  rfill.style.width = "100%";
-  rtimer = setInterval(()=>{
-    left--;
-    rnum.textContent = Math.max(left,0);
-    rfill.style.width = (left/sec*100)+"%";
-    if(left > 0 && left <= 3) restTick();
-    if(left <= 0){
-      clearInterval(rtimer); restDone(); restRunning = false;
-      if(!breathing) awake(false);
-      setTimeout(()=>rest.classList.remove("up"), 900);
-    }
-  },1000);
-}
-document.getElementById("rskip").onclick = ()=>{ clearInterval(rtimer); restRunning=false; if(!breathing) awake(false); rest.classList.remove("up"); };
 
-document.addEventListener("click", ev=>{
-  const b = ev.target.closest(".set");
-  if(!b) return;
-  ac();
-  const was = b.classList.contains("done");
-  b.classList.toggle("done");
-  done += was ? -1 : 1;
-  updateProgress();
-  if(!was) startRest(parseInt(b.parentElement.dataset.rest,10));
+function renderDay(k){
+  const d = DAYS[k];
+  let n = 0, total = 0;
+  let html = `<div class="dayhead"><h2>${d.title}</h2><p>${d.sub}</p>
+      <div class="progress"><div class="track"><i></i></div><div class="pct">0 / 0</div></div></div>`;
+  d.blocks.forEach(b=>{
+    html += `<div class="block"><div class="block-head"><h3>${b.h}</h3><span>${b.s}</span></div>
+             <p class="block-note">${b.note}</p>`;
+    if(b.breath) html += BREATH_HTML;
+    b.ex.forEach(key=>{ n++; total += setsOf(EX[key].rx); html += exHTML(key, n); });
+    html += `</div>`;
+  });
+  const el = document.getElementById("pane-"+k);
+  el.innerHTML = html;
+  el.dataset.total = total;
+  el.querySelector(".pct").textContent = "0 / " + total;
+  wireBreath(el);
+}
+["a","b","d"].forEach(renderDay);
+
+/* ============ tabs ============ */
+document.querySelectorAll(".tabs button").forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on", b===btn));
+    document.querySelectorAll(".pane").forEach(p=>p.hidden = (p.id !== "pane-"+btn.dataset.p));
+    window.scrollTo(0,0);
+  };
 });
 
-/* ---- expand everything when printing ---- */
-window.addEventListener("beforeprint", ()=>{
-  document.querySelectorAll("details").forEach(d=>{ d.dataset.was = d.open?"1":"0"; d.open = true; });
-});
-window.addEventListener("afterprint", ()=>{
-  document.querySelectorAll("details").forEach(d=>{ d.open = d.dataset.was === "1"; });
-});
-
-/* ---- audio ---- */
-let AC = null, tone = true, tick = false;
-function ac(){
-  if(!AC){ const C = window.AudioContext || window.webkitAudioContext; AC = new C(); }
-  if(AC.state === "suspended") AC.resume();
-  return AC;
-}
-function blip(freq, dur, gain, type, delay){
+/* ============ audio ============ */
+let AC=null, tone=true, tick=false;
+function ac(){ if(!AC){ const C=window.AudioContext||window.webkitAudioContext; AC=new C(); }
+  if(AC.state==="suspended") AC.resume(); return AC; }
+function blip(f,d,g,t,delay){
   if(!AC) return;
-  const c = AC, t = c.currentTime + (delay||0);
-  const o = c.createOscillator(), g = c.createGain();
-  o.type = type || "sine";
-  o.frequency.setValueAtTime(freq, t);
-  g.gain.setValueAtTime(0.0001, t);
-  g.gain.exponentialRampToValueAtTime(gain, t + 0.012);
-  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-  o.connect(g); g.connect(c.destination);
-  o.start(t); o.stop(t + dur + 0.03);
+  const c=AC, s=c.currentTime+(delay||0), o=c.createOscillator(), gn=c.createGain();
+  o.type=t||"sine"; o.frequency.setValueAtTime(f,s);
+  gn.gain.setValueAtTime(.0001,s);
+  gn.gain.exponentialRampToValueAtTime(g,s+.012);
+  gn.gain.exponentialRampToValueAtTime(.0001,s+d);
+  o.connect(gn); gn.connect(c.destination); o.start(s); o.stop(s+d+.03);
 }
-const chimeIn  = ()=>{ if(tone){ blip(523.25,.16,.28,"sine",0); blip(783.99,.20,.24,"sine",.10);} };
-const chimeOut = ()=>{ if(tone){ blip(659.25,.16,.28,"sine",0); blip(392.00,.26,.24,"sine",.10);} };
-const clickTick= ()=>{ if(tick) blip(1400,.028,.10,"square",0); };
-const restTick = ()=>{ if(tone) blip(880,.05,.16,"triangle",0); };
-const restDone = ()=>{ if(tone){ blip(659.25,.14,.3,"sine",0); blip(880,.22,.26,"sine",.12);} };
+const chimeIn =()=>{ if(tone){ blip(523.25,.16,.28,"sine",0); blip(783.99,.20,.24,"sine",.10);} };
+const chimeOut=()=>{ if(tone){ blip(659.25,.16,.28,"sine",0); blip(392,.26,.24,"sine",.10);} };
+const clickTick=()=>{ if(tick) blip(1400,.028,.10,"square",0); };
+const restTick=()=>{ if(tone) blip(880,.05,.16,"triangle",0); };
+const restDone=()=>{ if(tone){ blip(659.25,.14,.3,"sine",0); blip(880,.22,.26,"sine",.12);} };
 
-/* ---- keep screen awake while something is running ---- */
-let wl = null;
+/* ============ wake lock ============ */
+let wl=null, anyBreathing=false, restRunning=false;
 async function awake(on){
   try{
     if(on && "wakeLock" in navigator && !wl){
       wl = await navigator.wakeLock.request("screen");
-      wl.addEventListener("release", ()=>{ wl = null; });
-    }else if(!on && wl){ await wl.release(); wl = null; }
+      wl.addEventListener("release", ()=>{ wl=null; });
+    }else if(!on && wl){ await wl.release(); wl=null; }
   }catch(e){}
 }
 document.addEventListener("visibilitychange", ()=>{
-  if(document.visibilityState === "visible" && (breathing || restRunning)) awake(true);
+  if(document.visibilityState==="visible" && (anyBreathing||restRunning)) awake(true);
 });
 
-/* ---- breath pacer ---- */
-const IN = 4, OUT = 6, CYCLE = IN + OUT;
-const bBtn=document.getElementById("bBtn"), bBar=document.getElementById("bBar"),
-      bFill=bBar.querySelector("i"), bLab=document.getElementById("bLab"),
-      bCnt=document.getElementById("bCnt");
-let breathing=false, bTimer=null, bPos=0;
-
-function breathStep(){
-  const pos = bPos % CYCLE, inhale = pos < IN;
-  if(pos === 0){
-    bBar.classList.remove("out"); bFill.style.width = "100%";
-    bLab.textContent = "吸气 — 肋骨往两侧扩"; chimeIn();
-  }else if(pos === IN){
-    bBar.classList.add("out"); bFill.style.width = "6%";
-    bLab.textContent = "呼气 — 下腹往内收，像拉拉链"; chimeOut();
-  }else clickTick();
-  bCnt.textContent = inhale ? (IN - pos) : (CYCLE - pos);
-  bPos++;
-}
-bBtn.onclick = ()=>{
-  breathing = !breathing;
-  bBtn.textContent = breathing ? "停止" : "开始";
-  if(breathing){
-    ac(); bPos = 0; bCnt.classList.remove("idle");
-    breathStep(); bTimer = setInterval(breathStep, 1000); awake(true);
-  }else{
-    clearInterval(bTimer); bFill.style.width = "6%"; bBar.classList.remove("out");
-    bLab.textContent = "待机"; bCnt.textContent = "—"; bCnt.classList.add("idle");
-    if(!restRunning) awake(false);
+/* ============ breath pacer ============ */
+const IN=4, OUT=6, CYCLE=IN+OUT;
+function wireBreath(scope){
+  const btn=scope.querySelector(".bBtn"); if(!btn) return;
+  const bar=scope.querySelector(".bBar"), fill=bar.querySelector("i"),
+        lab=scope.querySelector(".bLab"), cnt=scope.querySelector(".bCnt");
+  let on=false, timer=null, pos=0;
+  function step(){
+    const p = pos % CYCLE, inhale = p < IN;
+    if(p===0){ bar.classList.remove("out"); fill.style.width="100%";
+               lab.textContent="吸气 — 肋骨往两侧扩"; chimeIn(); }
+    else if(p===IN){ bar.classList.add("out"); fill.style.width="6%";
+               lab.textContent="呼气 — 下腹往内收，像拉拉链"; chimeOut(); }
+    else clickTick();
+    cnt.textContent = inhale ? (IN-p) : (CYCLE-p);
+    pos++;
   }
-};
-document.getElementById("sTone").onclick = e=>{ tone = !tone; e.target.classList.toggle("on", tone); if(tone) ac(); };
-document.getElementById("sTick").onclick = e=>{ tick = !tick; e.target.classList.toggle("on", tick); if(tick) ac(); };
+  btn.onclick = ()=>{
+    on = !on; btn.textContent = on ? "停止" : "开始"; anyBreathing = on;
+    if(on){ ac(); pos=0; cnt.classList.remove("idle"); step();
+            timer=setInterval(step,1000); awake(true); }
+    else{ clearInterval(timer); fill.style.width="6%"; bar.classList.remove("out");
+          lab.textContent="待机"; cnt.textContent="—"; cnt.classList.add("idle");
+          if(!restRunning) awake(false); }
+  };
+  scope.querySelector(".sTone").onclick = e=>{ tone=!tone; e.target.classList.toggle("on",tone); if(tone) ac(); };
+  scope.querySelector(".sTick").onclick = e=>{ tick=!tick; e.target.classList.toggle("on",tick); if(tick) ac(); };
+}
 
-/* ---- expand everything when printing ---- */
+/* ============ sets + rest ============ */
+const rest=document.getElementById("rest"), rnum=document.getElementById("rnum"),
+      rfill=document.getElementById("rfill");
+let rtimer=null;
+function startRest(sec){
+  if(!sec) return;
+  clearInterval(rtimer);
+  let left=sec; restRunning=true; awake(true);
+  rest.classList.add("up"); rnum.textContent=left; rfill.style.width="100%";
+  rtimer=setInterval(()=>{
+    left--; rnum.textContent=Math.max(left,0); rfill.style.width=(left/sec*100)+"%";
+    if(left>0 && left<=3) restTick();
+    if(left<=0){ clearInterval(rtimer); restDone(); restRunning=false;
+                 if(!anyBreathing) awake(false);
+                 setTimeout(()=>rest.classList.remove("up"),900); }
+  },1000);
+}
+document.getElementById("rskip").onclick=()=>{
+  clearInterval(rtimer); restRunning=false; if(!anyBreathing) awake(false);
+  rest.classList.remove("up");
+};
+document.addEventListener("click", ev=>{
+  const b=ev.target.closest(".set"); if(!b) return;
+  ac();
+  const was=b.classList.contains("done");
+  b.classList.toggle("done");
+  const pane=b.closest(".pane");
+  const done=pane.querySelectorAll(".set.done").length, total=+pane.dataset.total;
+  pane.querySelector(".track i").style.width=(done/total*100)+"%";
+  pane.querySelector(".pct").textContent=done+" / "+total;
+  if(!was) startRest(+b.parentElement.dataset.rest);
+});
+
+/* ============ print / offline ============ */
 window.addEventListener("beforeprint", ()=>{
-  document.querySelectorAll("details").forEach(d=>{ d.dataset.was = d.open?"1":"0"; d.open = true; });
+  document.querySelectorAll(".pane").forEach(p=>{ p.dataset.was=p.hidden?"1":"0"; p.hidden=false; });
+  document.querySelectorAll("details").forEach(d=>{ d.dataset.was=d.open?"1":"0"; d.open=true; });
 });
 window.addEventListener("afterprint", ()=>{
-  document.querySelectorAll("details").forEach(d=>{ d.open = d.dataset.was === "1"; });
+  document.querySelectorAll(".pane").forEach(p=>{ p.hidden = p.dataset.was==="1"; });
+  document.querySelectorAll("details").forEach(d=>{ d.open = d.dataset.was==="1"; });
 });
-
-/* ---- offline ---- */
 if("serviceWorker" in navigator){
   window.addEventListener("load", ()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 }
