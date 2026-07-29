@@ -1,4 +1,4 @@
-const CACHE = "training-v3";
+const CACHE = "training-v4";
 const ASSETS = ["./", "./index.html", "./manifest.json"];
 
 self.addEventListener("install", e => {
