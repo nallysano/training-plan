@@ -1066,8 +1066,14 @@ function fmtDate(iso){
 
 const TRAIN_TYPES = ["A 天","B 天(胸椎)","C 天","盆底","拉伸","跑步/走路","其他"];
 
+let selectedLogDate = todayStr();
+function setLogDate(v){
+  selectedLogDate = v || todayStr();
+  renderTracker();
+}
+
 function toggleLog(type){
-  const date = todayStr();
+  const date = selectedLogDate || todayStr();
   let log = lsGet(LS_LOG, []);
   const idx = log.findIndex(e => e.date === date && e.type === type);
   if(idx >= 0) log.splice(idx, 1);
@@ -1132,7 +1138,7 @@ function renderTracker(){
       <span class="tags">${byDate[d].map(t => `<span class="tag2">${t}</span>`).join("")}</span>
     </div>`).join("") : '<div class="empty">还没有记录，点上面的按钮打卡</div>';
 
-  const todayTypes = byDate[today] || [];
+  const todayTypes = byDate[selectedLogDate] || [];
 
   const bodyRows = body.length ? body.map(e => `
     <tr>
@@ -1156,8 +1162,11 @@ function renderTracker(){
     <div class="dayhead"><h2>训练记录</h2><p>打卡今天练了什么，记录体重腰围的变化。数据只存在这台手机上，换设备或清缓存会丢失。</p></div>
 
     <div class="block">
-      <div class="block-head"><h3>今天打卡</h3><span>${fmtDate(today)}</span></div>
-      <p class="block-note">点一下记录，再点一下可以取消。</p>
+      <div class="block-head"><h3>打卡</h3><span>选日期</span></div>
+      <p class="block-note">默认今天，也可以改成之前的日期补记录。点一下记录，再点一下可以取消。</p>
+      <div class="formrow" style="margin-top:0">
+        <label>日期<input type="date" id="logDate" value="${selectedLogDate}" max="${today}" onchange="setLogDate(this.value)"></label>
+      </div>
       <div class="quick">
         ${TRAIN_TYPES.map(t => `<button class="${todayTypes.includes(t)?'on':''}" onclick="toggleLog('${t}')">${t}</button>`).join("")}
       </div>
